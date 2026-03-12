@@ -17,7 +17,7 @@ Vou tentar ser o mais disciplinado comigo mesmo, sem compromisso com nada nem ni
 É isso!
 Até mais.
 
-<img src="[https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZjA2dW9vc2FkeDJsNHA2cXF5eWtzc3QwY2dmd3J0bnJ4N3cxYTBociZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/QZybi9Vz7RbEOoTyvX/giphy.gif](https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZjA2dW9vc2FkeDJsNHA2cXF5eWtzc3QwY2dmd3J0bnJ4N3cxYTBociZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/QZybi9Vz7RbEOoTyvX/giphy.gif)" alt="Go go go" width="600">
+<img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZjA2dW9vc2FkeDJsNHA2cXF5eWtzc3QwY2dmd3J0bnJ4N3cxYTBociZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/QZybi9Vz7RbEOoTyvX/giphy.gif">(https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZjA2dW9vc2FkeDJsNHA2cXF5eWtzc3QwY2dmd3J0bnJ4N3cxYTBociZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/QZybi9Vz7RbEOoTyvX/giphy.gif)" alt="Go go go" width="600">
 
 
 ---
