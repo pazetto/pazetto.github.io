@@ -1,37 +1,43 @@
-## Welcome to GitHub Pages
+---
+layout: default
+title: Home
+---
 
-You can use the [editor on GitHub](https://github.com/pazetto/pazetto.github.io/edit/main/index.md) to maintain and preview the content for your website in Markdown files.
+# Felipe Pazetto
+### SQL Specialist | TOTVS Protheus & RM | Infraestrutura de Redes
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Bem-vindo ao meu espaço pessoal e profissional. Aqui compartilho soluções técnicas, projetos de dados e opiniões sobre tecnologia e atualidades.
 
-### Markdown
+---
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+## 🛠️ Expertise Técnica
 
-```markdown
-Syntax highlighted code block
+* **Banco de Dados:** Otimização de queries SQL Server, Tuning e Business Intelligence.
+* **ERP TOTVS:** Especialista em Protheus (ADVPL, Integrações, Dicionário de Dados) e RM.
+* **Infraestrutura:** Redes de computadores, servidores e segurança.
 
-# Header 1
-## Header 2
-### Header 3
+---
 
-- Bulleted
-- List
+## 📂 Portfólio de Projetos
 
-1. Numbered
-2. List
+### Otimização de Performance SQL
+Desenvolvimento de rotinas de manutenção e reindexação que reduziram o tempo de processamento de relatórios em 40% em ambiente Protheus.
 
-**Bold** and _Italic_ and `Code` text
+### Integrações de Sistemas
+Implementação de APIs REST para comunicação entre ERP e plataformas de e-commerce de terceiros.
 
-[Link](url) and ![Image](src)
-```
+---
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+## ✍️ Posts Recentes (Blog)
+*Em breve: Tutoriais sobre SQL Server e Protheus.*
 
-### Jekyll Themes
+---
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/pazetto/pazetto.github.io/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+## ⚽ Gosto Pessoal & Novidades
+Além de tecnologia, sou apaixonado por futebol e acompanho de perto o cenário político e as inovações que moldam o nosso futuro.
 
-### Support or Contact
+---
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+## 📫 Contato
+* **Email:** [felipe@pazetto.net](mailto:felipe@pazetto.net)
+* **LinkedIn:** [Seu-Link-Aqui](https://linkedin.com/in/seu-usuario)
