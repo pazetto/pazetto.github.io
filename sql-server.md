@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Projetos em SQL Server
-parent: Portofolio
+parent: Portfolio
 has_children: true
 ---
 
