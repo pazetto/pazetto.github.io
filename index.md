@@ -4,7 +4,7 @@ title: Home
 ---
 
 # Felipe Pazetto
-### SQL Specialist | TOTVS Protheus & RM | Infraestrutura de Redes
+### SQL Specialist | TOTVS Protheus | PowerBI
 
 Bem-vindo ao meu espaço pessoal e profissional. Aqui compartilho soluções técnicas, projetos de dados e opiniões sobre tecnologia e atualidades.
 
@@ -12,9 +12,9 @@ Bem-vindo ao meu espaço pessoal e profissional. Aqui compartilho soluções té
 
 ## 🛠️ Expertise Técnica
 
-* **Banco de Dados:** Otimização de queries SQL Server, Tuning e Business Intelligence.
-* **ERP TOTVS:** Especialista em Protheus (ADVPL, Integrações, Dicionário de Dados) e RM.
-* **Infraestrutura:** Redes de computadores, servidores e segurança.
+* **Banco de Dados:** Otimização de queries SQL Server, Tunning e Business Intelligence.
+* **ERP TOTVS:** Especialista em Protheus (ADVPL, API, TLPP, relatórios, upgrades) e suas tecnologias.
+* **PowerBI:** Montagem de dashboards, relatórios, análise de KPIs, conectores, dataflow e datawarehouse.
 
 ---
 
@@ -34,10 +34,10 @@ Implementação de APIs REST para comunicação entre ERP e plataformas de e-com
 ---
 
 ## ⚽ Gosto Pessoal & Novidades
-Além de tecnologia, sou apaixonado por futebol e acompanho de perto o cenário político e as inovações que moldam o nosso futuro.
+Além de tecnologia, sou apaixonado por futebol e acompanho de perto o cenário de CS2.
 
 ---
 
 ## 📫 Contato
 * **Email:** [felipe@pazetto.net](mailto:felipe@pazetto.net)
-* **LinkedIn:** [Seu-Link-Aqui](https://linkedin.com/in/seu-usuario)
+* **LinkedIn:** [https://linkedin.com/in/pazetto](https://linkedin.com/in/pazetto)
