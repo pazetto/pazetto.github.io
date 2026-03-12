@@ -17,6 +17,6 @@ Vou tentar ser o mais disciplinado comigo mesmo, sem compromisso com nada nem ni
 É isso!
 Até mais.
 
-![Let's go](https://tenor.com/search/usain-bolt-gif-gifs)
+![Let's go](https://tenor.com/bHakK.gif)
 
 ---
