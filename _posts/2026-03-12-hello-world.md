@@ -17,6 +17,11 @@ Vou tentar ser o mais disciplinado comigo mesmo, sem compromisso com nada nem ni
 É isso!
 Até mais.
 
-<div class="tenor-gif-embed" data-postid="22641816" data-share-method="host" data-aspect-ratio="1" data-width="100%"><a href="https://tenor.com/view/to-the-moon-point-pointing-flex-usain-bolt-gif-22641816">Let's Go</a>from <a href="https://tenor.com/search/to+the+moon-gifs">Let's Go</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+<div style="max-width: 300px; margin: 0 auto;">
+  <div class="tenor-gif-embed" data-postid="22641816" data-share-method="host" data-aspect-ratio="1" data-width="100%">
+    <a href="https://tenor.com/view/to-the-moon-point-pointing-flex-usain-bolt-gif-22641816">To The Moon Point GIF</a>
+  </div> 
+  <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+</div>
 
 ---
