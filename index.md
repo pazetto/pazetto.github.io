@@ -31,7 +31,7 @@ Visão holística da TI, garantindo que o software rode em uma base sólida, seg
 
 ---
 
-## 📝 Blog & Pensamentos
+## 📝 Blog
 Escrevo sobre as novidades do mercado de tecnologia, tendências em gestão de dados e insights sobre o cotidiano de um analista de sistemas.
 
 [Ver todos os posts →](#)
