@@ -1,6 +1,7 @@
 ---
 layout: default
-title: Felipe Pazetto | Soluções em Tecnologia e Dados
+title: Home
+nav_order: 1
 ---
 
 # Felipe Pazetto
