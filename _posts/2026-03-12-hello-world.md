@@ -17,6 +17,6 @@ Vou tentar ser o mais disciplinado comigo mesmo, sem compromisso com nada nem ni
 É isso!
 Até mais.
 
-![Let's go]([https://tenor.com/bHakK.gif](https://tenor.com/pt-BR/view/to-the-moon-point-pointing-flex-usain-bolt-gif-22641816))
+![Let's go](https://tenor.com/pt-BR/view/to-the-moon-point-pointing-flex-usain-bolt-gif-22641816)
 
 ---
