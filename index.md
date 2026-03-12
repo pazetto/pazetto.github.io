@@ -1,43 +1,41 @@
 ---
 layout: default
-title: Home
+title: Felipe Pazetto | Soluções em Tecnologia e Dados
 ---
 
 # Felipe Pazetto
-### SQL Specialist | TOTVS Protheus | PowerBI
+### Analista Fullstack | Especialista em Dados & ERP
 
-Bem-vindo ao meu espaço pessoal e profissional. Aqui compartilho soluções técnicas, projetos de dados e opiniões sobre tecnologia e atualidades.
-
----
-
-## 🛠️ Expertise Técnica
-
-* **Banco de Dados:** Otimização de queries SQL Server, Tunning e Business Intelligence.
-* **ERP TOTVS:** Especialista em Protheus (ADVPL, API, TLPP, relatórios, upgrades) e suas tecnologias.
-* **PowerBI:** Montagem de dashboards, relatórios, análise de KPIs, conectores, dataflow e datawarehouse.
+Transformo desafios de negócio em soluções tecnológicas eficientes. Com foco em resultados e governança de dados, atuo na intersecção entre a infraestrutura de TI e a inteligência estratégica.
 
 ---
 
-## 📂 Portfólio de Projetos
+## 📊 Business Intelligence & Dados
+Especializado em extrair valor de bases complexas (SQL Server) e traduzi-las em indicadores para tomada de decisão.
+* **SQL Server:** Modelagem, Tuning e Otimização de consultas.
+* **TOTVS Protheus & RM:** Customizações (ADVPL), arquitetura de dicionário e integrações.
 
-### Otimização de Performance SQL
-Desenvolvimento de rotinas de manutenção e reindexação que reduziram o tempo de processamento de relatórios em 40% em ambiente Protheus.
+## 💻 Desenvolvimento Fullstack
+Foco na criação de ferramentas que otimizam processos corporativos e melhoram a experiência do usuário final.
 
-### Integrações de Sistemas
-Implementação de APIs REST para comunicação entre ERP e plataformas de e-commerce de terceiros.
-
----
-
-## ✍️ Posts Recentes (Blog)
-*Em breve: Tutoriais sobre SQL Server e Protheus.*
+## 🌐 Infraestrutura & Redes
+Visão holística da TI, garantindo que o software rode em uma base sólida, segura e de alta disponibilidade.
 
 ---
 
-## ⚽ Gosto Pessoal & Novidades
-Além de tecnologia, sou apaixonado por futebol e acompanho de perto o cenário de CS2.
+## 🚀 Projetos em Destaque
+
+* **Dashboards Estratégicos:** Implementação de visões de BI integradas ao Protheus para monitoramento de KPIs financeiros em tempo real.
+* **Ecossistema de Integração:** Desenvolvimento de middlewares para automação de fluxo de dados entre ERP e plataformas externas.
 
 ---
 
-## 📫 Contato
-* **Email:** [felipe@pazetto.net](mailto:felipe@pazetto.net)
-* **LinkedIn:** [https://linkedin.com/in/pazetto](https://linkedin.com/in/pazetto)
+## 📝 Blog & Pensamentos
+Escrevo sobre as novidades do mercado de tecnologia, tendências em gestão de dados e insights sobre o cotidiano de um analista de sistemas.
+
+[Ver todos os posts →](#)
+
+---
+
+## 📫 Conecte-se comigo
+[LinkedIn](https://linkedin.com/in/seu-usuario) | [GitHub](https://github.com/pazetto) | [felipe@pazetto.net](mailto:felipe@pazetto.net)
