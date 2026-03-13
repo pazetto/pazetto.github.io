@@ -10,3 +10,4 @@ parent: Projetos em SQL Server
 
 ```sql
 SELECT * FROM SUA_TABELA WHERE PERFORMANCE = 'MÁXIMA'
+```
