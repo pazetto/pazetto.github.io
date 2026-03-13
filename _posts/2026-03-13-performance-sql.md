@@ -2,7 +2,7 @@
 layout: default
 title: "Clássico uso de CTE na melhora de queries longas"
 parent: Blog
-tags: sql protheus tunning
+tags: [SQL](#), [Protheus](#)
 ---
 # Clássico uso de CTE na melhora de queries longas
 <p style="font-size: 0.85em; color: #666;">
