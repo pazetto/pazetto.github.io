@@ -131,4 +131,5 @@ CTE_SD3 AS (
 
 Só com essa simples mudança, já reduziu drasticamente o tempo de execução do job e CPU (que durante a execução da query anterior ficava em 100%).
 
-É isso, vou tentar postar dia-a-dia mais casos de melhorias e 
+É isso, vou tentar postar dia-a-dia mais casos de melhorias e trazer qualquer coisa que eu possa ajudar para resolver problemas similares.
+Até mais!
