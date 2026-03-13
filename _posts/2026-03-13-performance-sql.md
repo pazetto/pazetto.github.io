@@ -1,8 +1,8 @@
 ---
 layout: default
-title: "Clássico uso de CTE na melhora de queries longas"
+title: "Primeiro Post"
 parent: Blog
-tags: [SQL](#), [Protheus](#)
+tags: [SQL, Protheus, Dados]
 ---
 # Clássico uso de CTE na melhora de queries longas
 <p style="font-size: 0.85em; color: #666;">
@@ -133,3 +133,6 @@ Só com essa simples mudança, já reduziu drasticamente o tempo de execução d
 
 É isso, vou tentar postar dia-a-dia mais casos de melhorias e trazer qualquer coisa que eu possa ajudar para resolver problemas similares.
 Até mais!
+
+---
+**Tags:** #SQL #Protheus #Dados
