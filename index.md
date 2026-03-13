@@ -14,13 +14,13 @@ Transformo desafios de negócio em soluções tecnológicas eficientes. Com foco
 ## 📊 Business Intelligence & Dados
 Especializado em extrair valor de bases complexas (SQL Server) e traduzi-las em indicadores para tomada de decisão.
 * **SQL Server:** Modelagem, Tuning e Otimização de consultas.
-* **TOTVS Protheus & RM:** Customizações (ADVPL), arquitetura de dicionário e integrações.
+* **TOTVS Protheus:** Customizações (ADVPL), arquitetura de dicionário e integrações.
 
 ## 💻 Desenvolvimento Fullstack
-Foco na criação de ferramentas que otimizam processos corporativos e melhoram a experiência do usuário final.
+Foco na criação de ferramentas que otimizam processos corporativos e melhoram a experiência do usuário final, desde a concepção do projeto até o teste e entrega com o key-user.
 
-## 🌐 Infraestrutura & Redes
-Visão holística da TI, garantindo que o software rode em uma base sólida, segura e de alta disponibilidade.
+## 🌐 Infraestrutura de Sistemas
+Visão holística da TI, garantindo que o software rode em uma base sólida, segura e de alta disponibilidade. Por ter vivência e formação na área de Infraestrutura, também atuo com consultor de infraestrutura de ERP para garantir estabilidade e performance.
 
 ---
 
