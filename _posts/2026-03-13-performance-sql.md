@@ -136,3 +136,5 @@ Até mais!
 
 ---
 **Tags:** #SQL #Protheus #Dados
+---
+{% include comentarios.html %}
