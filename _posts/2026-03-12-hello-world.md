@@ -21,3 +21,5 @@ Até mais.
 
 
 ---
+
+{% include comentarios.html %}
