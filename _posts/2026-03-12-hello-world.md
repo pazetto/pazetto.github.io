@@ -2,6 +2,8 @@
 layout: default
 title: "Estreia do blog e do site"
 parent: Blog
+image: "/assets/clay-banks-8q6e5hu3Ilc-unsplash.jpg"
+description: "Fala pessoal, começando por aqui agora, já era um desejo antigo começar com um site e um ambiente que fosse minha cara 100%."
 ---
 
 # Hello World

@@ -2,6 +2,8 @@
 layout: default
 title: "Primeiro Post"
 parent: Blog
+image: "/assets/sql-server.jpg"
+description: "Fala pessoal, primeiro post de fato do blog, hoje venho trazer um caso real na empresa onde trabalho onde empreguei o uso de CTE numa consulta pré-existente de uma query que demorava incríveis 12 MINUTOS (!!!)"
 tags: [SQL, Protheus, Dados]
 ---
 # Clássico uso de CTE na melhora de queries longas
