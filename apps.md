@@ -7,5 +7,5 @@ has_children: true
 
 # Apps
 
-Apps desenvolvidos pela Mellon
+Apps desenvolvidos pela Pazetto
 ---
