@@ -11,7 +11,7 @@ tags: [sql, protheus, smartview]
   <em>Por <strong>Felipe Pazetto</strong> | 18 de Março de 2026</em>
 </p>
 
-Fala pessoal, faz tempo que eu me incomodava quando eu desenvolvia queries no Protheus diretamente no SQL Server Management Studio, e tinha que ficar dando AS (apelidos) para os nomes das queries.
+Faz tempo que eu me incomodava quando eu desenvolvia queries no Protheus diretamente no SQL Server Management Studio, e tinha que ficar dando AS (apelidos) para os nomes das queries.
 Exemplo clássico:
 
 ```sql
@@ -28,11 +28,13 @@ A query também trata quando ele vem formato de data do Protheus (YYYYMMDD) e co
 Além disso, adiciona caso tenha cálculos entre os campos, visto que isso não vai existir no dicionário de dados do sistema (SX3).
 Como estou trazendo vários relatórios de sistemas terceiros para dentro do Smartview, construo lá uma Visão de Dados e jogo a query pura, agilizando muito o tempo de desenvolvimento.
 
+Falando em Visão de Dados, creio que esse possa ser um próximo post! :) 
+
 Exemplo abaixo:
 
 ```sql
-DECLARE @Query NVARCHAR(MAX);
-DECLARE @Colunas NVARCHAR(MAX);
+DECLARE @Query NVARCHAR(4000);
+DECLARE @Colunas NVARCHAR(4000);
 
 SELECT @Colunas = COALESCE(@Colunas + ', ', '') + 
     CASE 
