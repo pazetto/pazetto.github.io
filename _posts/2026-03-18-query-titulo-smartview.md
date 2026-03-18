@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Tratando nomes de campos do SQL no Protheus"
+title: "Deixando suas queries com nomes amigáveis mais rapidamente"
 parent: Blog
 image: "/assets/sql-server.jpg"
 description: "Fala pessoal, aqui vinha um problema antigo que eu resolvi buscar alguma solução mais prática quando desenvolvo queries no SQL para o Protheus (ou serve para ERPs similares)"
