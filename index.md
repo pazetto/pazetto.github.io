@@ -39,4 +39,4 @@ Escrevo sobre as novidades do mercado de tecnologia, tendências em gestão de d
 ---
 
 ## 📫 Conecte-se comigo
-[LinkedIn](https://linkedin.com/in/seu-usuario) | [GitHub](https://github.com/pazetto) | [felipe@pazetto.net](mailto:felipe@pazetto.net)
+[LinkedIn](https://linkedin.com/in/pazetto) | [GitHub](https://github.com/pazetto) | [felipe@pazetto.net](mailto:felipe@pazetto.net)
