@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Primeiro Post"
+title: "Primeiro post sobre SQL"
 parent: Blog
 image: "/assets/sql-server.jpg"
 description: "Fala pessoal, primeiro post de fato do blog, hoje venho trazer um caso real na empresa onde trabalho onde empreguei o uso de CTE numa consulta pré-existente de uma query que demorava incríveis 12 MINUTOS (!!!)"
