@@ -5,29 +5,29 @@ nav_order: 1
 ---
 
 # Felipe Pazetto
-### Analista Fullstack | Especialista em Dados & ERP
+### Analista de ERP & Banco de Dados | Fullstack Developer
 
-Transformo desafios de negócio em soluções tecnológicas eficientes. Com foco em resultados e governança de dados, atuo na intersecção entre a infraestrutura de TI e a inteligência estratégica.
+Transformo desafios de negócio em soluções tecnológicas eficientes, com especialização em ERP e otimização de dados. Atuo na implementação e manutenção de sistemas corporativos robustos que garantem performance e confiabilidade operacional.
 
 ---
 
-## 📊 Business Intelligence & Dados
-Especializado em extrair valor de bases complexas (SQL Server) e traduzi-las em indicadores para tomada de decisão.
-* **SQL Server:** Modelagem, Tuning e Otimização de consultas.
-* **TOTVS Protheus:** Customizações (ADVPL), arquitetura de dicionário e integrações.
+## 🏢 ERP & Banco de Dados
+Especialista em design, otimização e manutenção de ambientes de ERP com foco em performance e integridade dos dados.
+* **TOTVS Protheus:** Customizações (ADVPL), arquitetura de dicionário, integrações e consultoria de negócio.
+* **SQL Server:** Modelagem, tuning, otimização de consultas e governança de dados corporativos.
 
 ## 💻 Desenvolvimento Fullstack
-Foco na criação de ferramentas que otimizam processos corporativos e melhoram a experiência do usuário final, desde a concepção do projeto até o teste e entrega com o key-user.
+Criação de ferramentas que otimizam processos corporativos e integrações, desde a concepção até a entrega. Experiência em middlewares, extensões de sistemas e melhorias operacionais.
 
 ## 🌐 Infraestrutura de Sistemas
-Visão holística da TI, garantindo que o software rode em uma base sólida, segura e de alta disponibilidade. Por ter vivência e formação na área de Infraestrutura, também atuo com consultor de infraestrutura de ERP para garantir estabilidade e performance.
+Consultoria em infraestrutura de ERP, garantindo ambiente sólido, seguro e de alta disponibilidade. Visão técnica completa para suportar operações corporativas críticas.
 
 ---
 
 ## 🚀 Projetos em Destaque
 
-* **Dashboards Estratégicos:** Implementação de visões de BI integradas ao Protheus para monitoramento de KPIs financeiros em tempo real.
-* **Ecossistema de Integração:** Desenvolvimento de middlewares para automação de fluxo de dados entre ERP e plataformas externas.
+* **Otimização e Customizações Protheus:** Implementação de soluções ADVPL, arquitetura de dicionário e integrações para sistemas ERP.
+* **Ecossistema de Integração:** Desenvolvimento de middlewares para automação e sincronização de dados entre ERP e plataformas externas.
 
 ---
 
