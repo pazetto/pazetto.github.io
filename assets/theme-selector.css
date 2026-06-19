@@ -1,21 +1,23 @@
 :root {
-  --primary-color: #1e3a8a;
-  --secondary-color: #3b82f6;
-  --bg-color: #ffffff;
-  --text-color: #1f2937;
-  --border-color: #e5e7eb;
-  --hover-bg: #f3f4f6;
-  --code-bg: #f9fafb;
+  --primary-color: #0052cc !important;
+  --secondary-color: #0969da !important;
+  --bg-color: #ffffff !important;
+  --text-color: #000000 !important;
+  --border-color: #d0d7de !important;
+  --hover-bg: #f6f8fa !important;
+  --code-bg: #f6f8fa !important;
+  --code-text: #000000 !important;
 }
 
 html.dark-theme {
-  --primary-color: #3b82f6;
-  --secondary-color: #60a5fa;
-  --bg-color: #0f172a;
-  --text-color: #f3f4f6;
-  --border-color: #1e293b;
-  --hover-bg: #1e293b;
-  --code-bg: #1e293b;
+  --primary-color: #58a6ff !important;
+  --secondary-color: #79c0ff !important;
+  --bg-color: #0d1117 !important;
+  --text-color: #e6edf3 !important;
+  --border-color: #30363d !important;
+  --hover-bg: #161b22 !important;
+  --code-bg: #161b22 !important;
+  --code-text: #e6edf3 !important;
 }
 
 /* Botão do seletor de tema */
@@ -52,61 +54,99 @@ html.dark-theme {
 
 /* Aplicar cores do tema aos elementos principais */
 body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
+  background-color: var(--bg-color) !important;
+  color: var(--text-color) !important;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
 a {
-  color: var(--secondary-color);
+  color: var(--primary-color) !important;
 }
 
 a:hover {
   opacity: 0.8;
 }
 
-code {
-  background-color: var(--code-bg);
+p, span, div, li, h1, h2, h3, h4, h5, h6 {
+  color: var(--text-color) !important;
+}
+
+code, pre {
+  background-color: var(--code-bg) !important;
+  color: var(--code-text) !important;
 }
 
 /* Compatibilidade com just-the-docs */
+.site-nav,
 .sidebar {
-  background-color: var(--hover-bg);
-  border-right: 1px solid var(--border-color);
+  background-color: var(--hover-bg) !important;
+  border-right: 1px solid var(--border-color) !important;
+  color: var(--text-color) !important;
 }
 
-.main-content {
-  background-color: var(--bg-color);
+.main-content,
+.page-content {
+  background-color: var(--bg-color) !important;
+  color: var(--text-color) !important;
+}
+
+.nav-list a,
+.nav-list .nav-list-link {
+  color: var(--primary-color) !important;
+}
+
+.nav-list a:hover,
+.nav-list .nav-list-link:hover {
+  background-color: var(--code-bg) !important;
 }
 
 /* Cards e containers */
 .card,
 .callout,
-.note {
-  background-color: var(--hover-bg);
-  border-color: var(--border-color);
+.note,
+blockquote {
+  background-color: var(--code-bg) !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-color) !important;
 }
 
 /* Tabelas */
 table {
-  border-color: var(--border-color);
+  border-color: var(--border-color) !important;
+  color: var(--text-color) !important;
 }
 
-thead {
-  background-color: var(--hover-bg);
+thead, th {
+  background-color: var(--hover-bg) !important;
+  color: var(--text-color) !important;
+  border-color: var(--border-color) !important;
+}
+
+td, tr {
+  border-color: var(--border-color) !important;
 }
 
 /* Inputs e formulários */
 input,
 textarea,
 select {
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  border-color: var(--border-color);
+  background-color: var(--bg-color) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--border-color) !important;
 }
 
 input:focus,
 textarea:focus,
 select:focus {
-  border-color: var(--secondary-color);
+  border-color: var(--primary-color) !important;
+  outline-color: var(--primary-color) !important;
+}
+
+/* Buttons */
+button {
+  color: var(--text-color) !important;
 }
