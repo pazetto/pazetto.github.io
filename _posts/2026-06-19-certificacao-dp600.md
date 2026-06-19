@@ -2,7 +2,7 @@
 layout: default
 title: "Minha jornada rumo à certificação DP-600"
 parent: Blog
-image: "/assets/microsoft-dp600.jpg"
+image: "/assets/smartview-sql.jpg"
 description: "Fala pessoal, aqui venho compartilhar minha jornada estudando para a certificação DP-600 da Microsoft, o que estou revisando, meu planejamento e objetivo de conquistar esse título até o final do mês."
 tags: [Microsoft, DP-600, Certificação, Power BI, Dados]
 ---
