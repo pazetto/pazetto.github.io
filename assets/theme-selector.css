@@ -1,0 +1,112 @@
+:root {
+  --primary-color: #1e3a8a;
+  --secondary-color: #3b82f6;
+  --bg-color: #ffffff;
+  --text-color: #1f2937;
+  --border-color: #e5e7eb;
+  --hover-bg: #f3f4f6;
+  --code-bg: #f9fafb;
+}
+
+html.dark-theme {
+  --primary-color: #3b82f6;
+  --secondary-color: #60a5fa;
+  --bg-color: #0f172a;
+  --text-color: #f3f4f6;
+  --border-color: #1e293b;
+  --hover-bg: #1e293b;
+  --code-bg: #1e293b;
+}
+
+/* Botão do seletor de tema */
+.theme-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.theme-toggle:hover {
+  background: var(--secondary-color);
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.theme-toggle:active {
+  transform: scale(0.95);
+}
+
+/* Aplicar cores do tema aos elementos principais */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+a {
+  color: var(--secondary-color);
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+code {
+  background-color: var(--code-bg);
+}
+
+/* Compatibilidade com just-the-docs */
+.sidebar {
+  background-color: var(--hover-bg);
+  border-right: 1px solid var(--border-color);
+}
+
+.main-content {
+  background-color: var(--bg-color);
+}
+
+/* Cards e containers */
+.card,
+.callout,
+.note {
+  background-color: var(--hover-bg);
+  border-color: var(--border-color);
+}
+
+/* Tabelas */
+table {
+  border-color: var(--border-color);
+}
+
+thead {
+  background-color: var(--hover-bg);
+}
+
+/* Inputs e formulários */
+input,
+textarea,
+select {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border-color: var(--border-color);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--secondary-color);
+}
