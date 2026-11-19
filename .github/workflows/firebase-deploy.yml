@@ -1,0 +1,36 @@
+# Publica o site (pasta site/) no Firebase Hosting a cada push na main.
+# A credencial fica no secret FIREBASE_SERVICE_ACCOUNT_WEBSITE_F42B7,
+# criado pelo comando `firebase init hosting:github`.
+name: Deploy no Firebase
+
+on:
+  push:
+    branches: [main]
+    paths: ['site/**', '.github/workflows/firebase-deploy.yml']
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: site
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+
+      - run: npm ci
+      - run: npm run build
+
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_WEBSITE_F42B7 }}
+          projectId: website-f42b7
+          channelId: live
+          entryPoint: site

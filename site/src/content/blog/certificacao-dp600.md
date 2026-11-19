@@ -1,17 +1,9 @@
 ---
-layout: default
 title: "Minha jornada rumo à certificação DP-600"
-parent: Blog
-image: "/assets/smartview-sql.jpg"
 description: "Fala pessoal, aqui venho compartilhar minha jornada estudando para a certificação DP-600 da Microsoft, o que estou revisando, meu planejamento e objetivo de conquistar esse título até o final do mês."
+date: 2026-06-19
 tags: [Microsoft, DP-600, Certificação, Power BI, Dados]
 ---
-
-# Minha jornada rumo à certificação DP-600 da Microsoft
-
-<p style="font-size: 0.85em; color: #666;">
-  <em>Por <strong>Felipe Pazetto</strong> | 19 de Junho de 2026</em>
-</p>
 
 Fala pessoal! Hoje vou compartilhar com vocês um desafio pessoal que estou encarando: conquistar a certificação **DP-600: Fabricating Data Models with Power BI** da Microsoft até o final deste mês. Pode parecer ambicioso, mas aqui explico minha estratégia, o que estou estudando e por que essa certificação é importante para mim.
 
@@ -81,11 +73,3 @@ Faço um apelo: se alguém que lê isso também está estudando DP-600 ou já co
 Até mais!
 
 <img src="https://media2.giphy.com/media/l0HlNaQ9OHIOm1ZSE/giphy.gif" alt="Studying hard" style="max-width: 600px; width: 100%;">
-
----
-
-**Tags:** #microsoft #dp600 #powerbi #certificação #dados #estudos
-
----
-
-{% include comentarios.html %}

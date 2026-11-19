@@ -1,15 +1,9 @@
 ---
-layout: default
 title: "Deixando suas queries com nomes amigáveis mais rapidamente"
-parent: Blog
-image: "/assets/sql-server.jpg"
 description: "Fala pessoal, aqui vinha um problema antigo que eu resolvi buscar alguma solução mais prática quando desenvolvo queries no SQL para o Protheus (ou serve para ERPs similares)"
-tags: [sql, protheus, smartview]
+date: 2026-03-18
+tags: [SQL, Protheus, SmartView]
 ---
-# Deixando suas queries com nomes amigáveis mais rapidamente
-<p style="font-size: 0.85em; color: #666;">
-  <em>Por <strong>Felipe Pazetto</strong> | 18 de Março de 2026</em>
-</p>
 
 Faz tempo que eu me incomodava quando eu desenvolvia queries no Protheus diretamente no SQL Server Management Studio, e tinha que ficar dando AS (apelidos) para os nomes das queries.
 Exemplo clássico:
@@ -70,8 +64,3 @@ EXEC sp_executesql @Query;
 
 É isso, vou tentar postar dia-a-dia mais casos de melhorias e trazer qualquer coisa que eu possa ajudar para resolver problemas similares.
 Até mais!
-
----
-**Tags:** #sql #protheus #smartview
----
-{% include comentarios.html %}

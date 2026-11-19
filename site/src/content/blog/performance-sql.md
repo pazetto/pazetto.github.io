@@ -1,15 +1,9 @@
 ---
-layout: default
-title: "Primeiro post sobre SQL"
-parent: Blog
-image: "/assets/sql-server.jpg"
+title: "Clássico uso de CTE na melhora de queries longas"
 description: "Fala pessoal, primeiro post de fato do blog, hoje venho trazer um caso real na empresa onde trabalho onde empreguei o uso de CTE numa consulta pré-existente de uma query que demorava incríveis 12 MINUTOS (!!!)"
+date: 2026-03-13
 tags: [SQL, Protheus, Dados]
 ---
-# Clássico uso de CTE na melhora de queries longas
-<p style="font-size: 0.85em; color: #666;">
-  <em>Por <strong>Felipe Pazetto</strong> | 13 de Março de 2026</em>
-</p>
 
 Fala pessoal, primeiro post de fato do blog, hoje venho trazer um caso real na empresa onde trabalho onde empreguei o uso de CTE numa consulta pré-existente de uma query que demorava incríveis 12 MINUTOS (!!!) e hoje, com os mesmos dados, executa em 10 segundos.
 
@@ -135,8 +129,3 @@ Só com essa simples mudança, já reduziu drasticamente o tempo de execução d
 
 É isso, vou tentar postar dia-a-dia mais casos de melhorias e trazer qualquer coisa que eu possa ajudar para resolver problemas similares.
 Até mais!
-
----
-**Tags:** #SQL #Protheus #Dados
----
-{% include comentarios.html %}

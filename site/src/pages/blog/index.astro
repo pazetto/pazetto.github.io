@@ -1,0 +1,35 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { dataCurta } from '../../data/perfil';
+import { link, minutosLeitura } from '../../lib/link';
+
+const aqui = Astro.url.pathname;
+const posts = (await getCollection('blog')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const iso = (d: Date) => d.toISOString().slice(0, 10);
+---
+<Base titulo="Blog · Felipe Pazetto" descricao="Notas sobre SQL, Protheus, Power BI e o dia a dia de quem cuida de sistemas.">
+  <section class="in secao blog-topo">
+    <header class="secao-head">
+      <h1>Blog</h1>
+      <p>Notas sobre SQL, Protheus, Power BI e o dia a dia de quem cuida de sistemas.</p>
+    </header>
+    <ul class="posts">
+      {posts.map((p) => (
+        <li>
+          <a href={link(aqui, `/blog/${p.id}`)}>
+            <time datetime={iso(p.data.date)}>{dataCurta(iso(p.data.date))}</time>
+            <div>
+              <h3>{p.data.title}</h3>
+              <p class="post-desc">{p.data.description}</p>
+            </div>
+            <span class="post-tag">{minutosLeitura(p.body ?? '')} min</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+</Base>
+<style is:global>
+  .blog-topo { border-top: 0; padding-top: 56px; }
+</style>

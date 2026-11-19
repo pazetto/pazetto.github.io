@@ -1,0 +1,22 @@
+{
+  "hosting": {
+    "public": "dist",
+    "cleanUrls": true,
+    "trailingSlash": false,
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "redirects": [
+      { "source": "/2026/03/12/hello-world{,.html}", "destination": "/blog/hello-world", "type": 301 },
+      { "source": "/2026/03/13/performance-sql{,.html}", "destination": "/blog/performance-sql", "type": 301 },
+      { "source": "/2026/03/18/query-titulo-smartview{,.html}", "destination": "/blog/query-titulo-smartview", "type": 301 },
+      { "source": "/2026/03/20/fazendo-consultas-sql-smartview{,.html}", "destination": "/blog/query-titulo-smartview", "type": 301 },
+      { "source": "/2026/06/19/certificacao-dp600{,.html}", "destination": "/blog/certificacao-dp600", "type": 301 },
+      { "source": "/portfolio{,.html}", "destination": "/#portfolio", "type": 301 },
+      { "source": "/projeto-tuning{,.html}", "destination": "/blog/performance-sql", "type": 301 },
+      { "source": "/sql-server{,.html}", "destination": "/#portfolio", "type": 301 },
+      { "source": "/apps{,.html}", "destination": "/#mellon", "type": 301 }
+    ],
+    "headers": [
+      { "source": "**/*.@(png|jpg|svg|ico)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800" }] }
+    ]
+  }
+}

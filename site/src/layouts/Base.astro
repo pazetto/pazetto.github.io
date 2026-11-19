@@ -1,0 +1,116 @@
+---
+import { link, arquivo } from '../lib/link';
+import { perfil } from '../data/perfil';
+
+interface Props { titulo: string; descricao?: string }
+const { titulo, descricao = perfil.resumo } = Astro.props;
+const aqui = Astro.url.pathname;
+const l = (d: string) => link(aqui, d);
+---
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>{titulo}</title>
+  <meta name="description" content={descricao} />
+  <meta property="og:title" content={titulo} />
+  <meta property="og:description" content={descricao} />
+  <meta property="og:image" content={new URL('/logo.png', Astro.site).href} />
+  <meta name="theme-color" content="#0a1018" />
+  <link rel="icon" href={arquivo(aqui, '/favicon.png')} />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" />
+</head>
+<body>
+  <header class="topo">
+    <div class="in topo-in">
+      <a href={l('/')} class="marca" aria-label="Início">FP<span>.</span></a>
+      <nav aria-label="Seções">
+        <a href={l('/#curriculo')}>Currículo</a>
+        <a href={l('/#portfolio')}>Portfolio</a>
+        <a href={l('/#mellon')}>Mellon</a>
+        <a href={l('/blog')} aria-current={aqui.startsWith('/blog') ? 'page' : undefined}>Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <main><slot /></main>
+
+  <footer class="in rodape">
+    <span>© {new Date().getFullYear()} {perfil.nome} · {perfil.local}</span>
+    <span class="rodape-links">
+      <a href={perfil.linkedin}>LinkedIn</a>
+      <a href={perfil.github}>GitHub</a>
+    </span>
+  </footer>
+</body>
+</html>
+
+<style is:global>
+  /* Paleta tirada do logo: azul-marinho, azul-aço e prata. */
+  :root {
+    --bg: #0a1018;
+    --bg-2: #111a26;
+    --linha: #1f2b3b;
+    --texto: #e8edf2;
+    --dim: #93a1b1;
+    --azul: #74acd8;      /* azul-aço clareado para ler bem no escuro */
+    --marinho: #0d2541;   /* azul do logo */
+    --prata: #dde4ea;
+    --prata-2: #c3cfd9;
+    --display: 'Bricolage Grotesque', 'Instrument Sans', system-ui, sans-serif;
+    --sans: 'Instrument Sans', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  body { margin: 0; background: var(--bg); color: var(--texto); font: 400 17px/1.6 var(--sans); }
+  body::before { content: ''; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); background: var(--bg); z-index: 30; }
+  a { color: inherit; text-decoration: none; }
+  a:focus-visible { outline: 2px solid var(--azul); outline-offset: 4px; }
+  .in { max-width: 1180px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  h1, h2, h3 { font-family: var(--display); text-wrap: balance; }
+  .rotulo { font: 400 13px var(--mono); color: var(--azul); margin: 0; letter-spacing: 0.02em; }
+
+  .topo { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(10, 16, 24, 0.88); backdrop-filter: blur(10px); }
+  .topo-in { display: flex; justify-content: space-between; align-items: center; padding-block: 18px; gap: 16px; }
+  .marca { font: 800 22px var(--display); letter-spacing: -0.04em; }
+  .marca span { color: var(--azul); }
+  .topo nav { display: flex; gap: 28px; flex-wrap: wrap; }
+  .topo nav a { font-size: 15px; color: var(--dim); position: relative; }
+  .topo nav a::after { content: ''; position: absolute; left: 0; right: 100%; bottom: -3px; height: 1.5px; background: var(--azul); transition: right 0.25s; }
+  .topo nav a:hover, .topo nav a[aria-current='page'] { color: var(--texto); }
+  .topo nav a:hover::after, .topo nav a[aria-current='page']::after { right: 0; }
+
+  .secao { padding-block: 96px; border-top: 1px solid var(--linha); }
+  .secao-head { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: end; margin-bottom: 56px; }
+  .secao-head h2, .secao-head h1 { margin: 0; font-size: clamp(48px, 8vw, 104px); font-weight: 800; letter-spacing: -0.045em; line-height: 0.9; }
+  .secao-head p { margin: 0; color: var(--dim); max-width: 42ch; font-size: 18px; }
+
+  .posts { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--linha); }
+  .posts a { display: grid; grid-template-columns: 140px 1fr auto; gap: 32px; align-items: baseline; padding: 28px 0; border-bottom: 1px solid var(--linha); }
+  .posts time { font: 400 13px var(--mono); color: var(--dim); }
+  .posts h3 { margin: 0; font-size: clamp(22px, 2.6vw, 32px); font-weight: 600; letter-spacing: -0.02em; line-height: 1.15; transition: color 0.2s, transform 0.25s; }
+  .posts .post-desc { margin: 8px 0 0; color: var(--dim); font-size: 16px; max-width: 70ch; }
+  .posts a:hover h3 { color: var(--azul); transform: translateX(8px); }
+  .post-tag { font-size: 14px; color: var(--dim); white-space: nowrap; }
+
+  .rodape { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; padding-block: 28px 48px; border-top: 1px solid var(--linha); color: var(--dim); font-size: 14px; }
+  .rodape-links { display: flex; gap: 20px; }
+  .rodape a:hover { color: var(--azul); }
+
+  @media (max-width: 860px) {
+    .secao-head { grid-template-columns: 1fr; }
+    .posts a { grid-template-columns: 1fr; gap: 6px; }
+    .post-tag { display: none; }
+  }
+  @media (max-width: 560px) {
+    .topo nav { gap: 16px; }
+    .topo nav a { font-size: 14px; }
+    .secao { padding-block: 64px; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } html { scroll-behavior: auto; } }
+</style>
