@@ -168,12 +168,12 @@ export const mellon = {
       url: 'https://sorteador.pazetto.net',
       descricao:
         'Monta times equilibrados para o futebol da semana em segundos, sem discussão na hora da pelada.',
-      status: 'No ar',
+      status: 'Em breve',
       stack: ['Firebase', 'Web'],
     },
     {
       nome: 'Portal de Seguros',
-      url: 'https://seguros.pazetto.net',
+      url: 'https://seguros-746c6.web.app',
       descricao:
         'Portal para organizar apólices, clientes e renovações de seguros em um só lugar.',
       status: 'No ar',
