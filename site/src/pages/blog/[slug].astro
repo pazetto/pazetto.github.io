@@ -1,0 +1,76 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { dataCurta } from '../../data/perfil';
+import { link, minutosLeitura } from '../../lib/link';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const aqui = Astro.url.pathname;
+const iso = post.data.date.toISOString().slice(0, 10);
+const [a, m, d] = iso.split('-');
+// Mesmo id de página que o Jekyll usava: mantém os comentários já feitos no Cusdis.
+const idAntigo = `/${a}/${m}/${d}/${post.id}.html`;
+---
+<Base titulo={`${post.data.title} · Felipe Pazetto`} descricao={post.data.description}>
+  <article class="in artigo">
+    <a class="voltar" href={link(aqui, '/blog')}>← Blog</a>
+    <header class="artigo-head">
+      <p class="rotulo">
+        <time datetime={iso}>{dataCurta(iso)}</time> · {minutosLeitura(post.body ?? '')} min de leitura
+      </p>
+      <h1>{post.data.title}</h1>
+      {post.data.tags.length > 0 && (
+        <ul class="artigo-tags">{post.data.tags.map((t) => <li>{t}</li>)}</ul>
+      )}
+    </header>
+    <div class="prosa"><Content /></div>
+
+    <section class="comentarios" aria-label="Comentários">
+      <h2>Comentários</h2>
+      <div id="cusdis_thread"
+        data-host="https://cusdis.com"
+        data-app-id="92812a6a-7337-49d0-9618-031aa2b044f8"
+        data-page-id={idAntigo}
+        data-page-url={new URL(`/blog/${post.id}`, Astro.site).href}
+        data-page-title={post.data.title}
+        data-theme="dark"></div>
+      <script is:inline async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+    </section>
+  </article>
+</Base>
+
+<style is:global>
+  .artigo { padding-block: 40px 96px; }
+  .artigo > * { max-width: 760px; }
+  .voltar { color: var(--dim); font-size: 15px; }
+  .voltar:hover { color: var(--azul); }
+  .artigo-head { margin: 40px 0 48px; }
+  .artigo-head h1 { margin: 16px 0 0; font-size: clamp(36px, 6vw, 64px); font-weight: 800; letter-spacing: -0.04em; line-height: 1; }
+  .artigo-tags { list-style: none; padding: 0; margin: 20px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .artigo-tags li { font: 400 12px var(--mono); color: var(--azul); border: 1px solid var(--linha); border-radius: 999px; padding: 3px 10px; }
+  .prosa { font-size: 18px; line-height: 1.75; }
+  .prosa > * + * { margin-top: 1.1em; }
+  .prosa p { margin: 0; }
+  .prosa h2, .prosa h3 { font-weight: 600; letter-spacing: -0.02em; line-height: 1.2; margin-top: 1.8em; margin-bottom: 0; }
+  .prosa h2 { font-size: 30px; }
+  .prosa h3 { font-size: 23px; }
+  .prosa a { color: var(--azul); text-decoration: underline; text-underline-offset: 3px; }
+  .prosa ul, .prosa ol { padding-left: 1.3em; margin-bottom: 0; }
+  .prosa li + li { margin-top: 0.35em; }
+  .prosa strong { color: #fff; }
+  .prosa blockquote { margin-left: 0; margin-right: 0; padding-left: 20px; border-left: 2px solid var(--azul); color: var(--dim); }
+  .prosa img { max-width: 100%; height: auto; border-radius: 12px; }
+  .prosa :not(pre) > code { font: 0.86em var(--mono); background: var(--bg-2); border: 1px solid var(--linha); border-radius: 6px; padding: 0.1em 0.4em; }
+  .prosa pre { font: 14px/1.6 var(--mono); padding: 20px; border-radius: 12px; border: 1px solid var(--linha); background: var(--bg-2) !important; overflow-x: auto; max-width: 100%; }
+  .prosa table { border-collapse: collapse; display: block; overflow-x: auto; font-size: 15px; }
+  .prosa th, .prosa td { border-bottom: 1px solid var(--linha); padding: 8px 12px; text-align: left; }
+  .prosa hr { border: 0; border-top: 1px solid var(--linha); margin: 2.4em 0; }
+  .comentarios { margin-top: 72px; padding-top: 40px; border-top: 1px solid var(--linha); }
+  .comentarios h2 { margin: 0 0 20px; font-size: 26px; font-weight: 600; }
+</style>

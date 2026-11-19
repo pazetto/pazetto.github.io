@@ -3,11 +3,11 @@
 
 export const perfil = {
   nome: 'Felipe Pazetto',
-  cargo: 'Analista de Sistemas Sênior · ERP & Dados',
+  cargo: 'Coordenador de Sistemas · ERP & Dados',
   local: 'Jundiaí / SP',
   resumo:
-    'Há 14 anos transformo processos de negócio em sistemas que funcionam. Desenvolvo e sustento ERPs (TOTVS Protheus e Microsoft Dynamics), otimizo bancos SQL Server e construo integrações e ferramentas fullstack.',
-  anosExperiencia: 14,
+    'Há 16 anos transformo processos de negócio em sistemas que funcionam. Hoje coordeno a área de sistemas da America Embalagens. Antes disso, desenvolvi e sustentei ERPs (TOTVS Protheus e Microsoft Dynamics), otimizei bancos SQL Server e construí integrações e ferramentas fullstack.',
+  anosExperiencia: 16,
   email: 'felipe@pazetto.net',
   linkedin: 'https://linkedin.com/in/pazetto',
   github: 'https://github.com/pazetto',
@@ -17,6 +17,7 @@ export const perfil = {
     { idioma: 'Espanhol', codigo: 'es_ES', nivel: 'Intermediário (B1)' },
   ],
   stack: [
+    'Gestão de times de sistemas',
     'TOTVS Protheus',
     'AdvPL / TLPP',
     'SQL Server',
@@ -34,13 +35,31 @@ export type Experiencia = {
   empresa: string;
   cargo: string;
   resumo: string;
+  destaques?: string[];
   tags: string[];
 };
 
 export const experiencias: Experiencia[] = [
   {
-    inicio: '2022',
+    inicio: '2026',
     fim: 'hoje',
+    empresa: 'America Embalagens',
+    cargo: 'Coordenador de Sistemas',
+    resumo:
+      'Coordeno a área de sistemas: equipe, fornecedores e a evolução do TOTVS Protheus, sempre alinhado às áreas de negócio.',
+    destaques: [
+      'Gestão da equipe de sistemas e das consultorias parceiras',
+      'Roadmap do ERP e priorização de demandas com as áreas de negócio',
+      'Acompanhamento de chamados, SLAs e indicadores da área',
+      'Orçamento, contratos e licenças de sistemas',
+      'Governança de acessos e apoio a auditorias',
+      'Projetos de integração, automação e dados (BI)',
+    ],
+    tags: ['Gestão', 'Protheus', 'Governança', 'Projetos'],
+  },
+  {
+    inicio: '2022',
+    fim: '2026',
     empresa: 'Fedrigoni Group',
     cargo: 'Analista de Sistemas Sênior',
     resumo:
@@ -102,6 +121,7 @@ export type Projeto = {
   area: string;
   resumo: string;
   metrica?: { valor: string; rotulo: string };
+  link?: string;
   tags: string[];
 };
 
@@ -110,8 +130,9 @@ export const portfolio: Projeto[] = [
     titulo: 'Tuning de queries no Protheus',
     area: 'SQL Server',
     resumo:
-      'Refatoração com CTE de uma consulta que levava 12 minutos, sem mexer em hardware.',
-    metrica: { valor: '12 min', rotulo: 'tempo original da consulta' },
+      'Refatoração com CTE de uma consulta que levava 12 minutos. Com os mesmos dados, ela passou a rodar em 10 segundos, sem mexer em hardware.',
+    metrica: { valor: '12 min → 10 s', rotulo: 'mesma consulta, mesmos dados' },
+    link: '/blog/performance-sql',
     tags: ['SQL Server', 'CTE', 'Performance'],
   },
   {
@@ -160,48 +181,6 @@ export const mellon = {
     },
   ],
 };
-
-export type Post = {
-  titulo: string;
-  data: string; // AAAA-MM-DD
-  resumo: string;
-  tags: string[];
-  minutos: number;
-};
-
-export const posts: Post[] = [
-  {
-    titulo: 'Minha jornada rumo à certificação DP-600',
-    data: '2026-06-19',
-    resumo:
-      'O que estou revisando, meu planejamento e o objetivo de conquistar a certificação até o fim do mês.',
-    tags: ['Power BI', 'Microsoft', 'Certificação'],
-    minutos: 6,
-  },
-  {
-    titulo: 'Deixando suas queries com nomes amigáveis mais rapidamente',
-    data: '2026-03-18',
-    resumo:
-      'Uma forma prática de dar nomes legíveis às colunas quando escrevo SQL para o Protheus e para o SmartView.',
-    tags: ['SQL', 'Protheus', 'SmartView'],
-    minutos: 4,
-  },
-  {
-    titulo: 'Clássico uso de CTE na melhora de queries longas',
-    data: '2026-03-13',
-    resumo:
-      'Um caso real: uma consulta que demorava 12 minutos e como a CTE mudou esse cenário.',
-    tags: ['SQL', 'Protheus', 'Dados'],
-    minutos: 5,
-  },
-  {
-    titulo: 'Estreia do blog e do site',
-    data: '2026-03-12',
-    resumo: 'Por que decidi criar um espaço que fosse 100% a minha cara.',
-    tags: ['Pessoal'],
-    minutos: 2,
-  },
-];
 
 const meses = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'];
 export function dataCurta(iso: string) {

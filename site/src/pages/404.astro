@@ -1,0 +1,13 @@
+---
+import Base from '../layouts/Base.astro';
+import { link } from '../lib/link';
+const aqui = Astro.url.pathname;
+---
+<Base titulo="Página não encontrada · Felipe Pazetto">
+  <section class="in secao" style="border-top:0">
+    <header class="secao-head">
+      <h1>404</h1>
+      <p>Esta página não existe ou mudou de endereço. <a href={link(aqui, '/')} style="color:var(--azul)">Voltar para o início →</a></p>
+    </header>
+  </section>
+</Base>
