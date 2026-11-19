@@ -1,0 +1,349 @@
+---
+import Seletor from '../components/Seletor.astro';
+import { perfil, experiencias, formacao, certificacoes, portfolio, mellon, posts, dataCurta } from '../data/perfil';
+
+const kpis = [
+  { valor: `${perfil.anosExperiencia}`, rotulo: 'anos em TI' },
+  { valor: '10+', rotulo: 'sistemas integrados a ERPs' },
+  { valor: '2', rotulo: 'ERPs: Protheus e Dynamics' },
+  { valor: '3', rotulo: 'idiomas' },
+];
+---
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Felipe Pazetto · Query</title>
+  <link rel="icon" href="favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" />
+</head>
+<body>
+  <header class="topo">
+    <div class="topo-in">
+      <a class="marca" href="#inicio"><span class="marca-p">P</span>pazetto<span class="dim">.net</span></a>
+      <nav aria-label="Seções">
+        <a href="#curriculo">Currículo</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#mellon">Mellon</a>
+        <a href="#blog">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="inicio" class="faixa hero">
+      <div class="in hero-grid">
+        <div class="hero-txt">
+          <p class="eyebrow">{perfil.local} · disponível para projetos</p>
+          <h1>{perfil.nome}</h1>
+          <p class="cargo">{perfil.cargo}</p>
+          <p class="resumo">{perfil.resumo}</p>
+          <div class="ctas">
+            <a class="btn" href={perfil.linkedin}>LinkedIn</a>
+            <a class="btn btn-2" href={perfil.github}>GitHub</a>
+            <span class="mail">{perfil.email}</span>
+          </div>
+        </div>
+
+        <figure class="query" aria-label="Resumo em formato de consulta SQL">
+          <div class="query-bar"><span></span><span></span><span></span><em>perfil.sql</em></div>
+          <pre class="sql"><code><b>SELECT</b> anos, sistemas, erps, idiomas
+  <b>FROM</b> profissionais
+ <b>WHERE</b> nome = <s>'Felipe Pazetto'</s>
+   <b>AND</b> foco <b>IN</b> (<s>'ERP'</s>, <s>'Dados'</s>);</code></pre>
+          <div class="result">
+            {kpis.map((k) => (
+              <div class="kpi">
+                <span class="kpi-v">{k.valor}</span>
+                <span class="kpi-r">{k.rotulo}</span>
+              </div>
+            ))}
+          </div>
+          <figcaption>1 row affected · 0,003 s</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="curriculo" class="faixa">
+      <div class="in">
+        <header class="sec-head">
+          <p class="eyebrow">Currículo</p>
+          <h2>Experiência</h2>
+        </header>
+        <div class="tabela-wrap">
+          <table class="tabela">
+            <thead>
+              <tr><th>Período</th><th>Empresa / cargo</th><th>O que fiz</th><th>Stack</th></tr>
+            </thead>
+            <tbody>
+              {experiencias.map((e) => (
+                <tr>
+                  <td class="periodo">{e.inicio}<span>→</span>{e.fim}</td>
+                  <td><strong>{e.empresa}</strong><span class="cargo-t">{e.cargo}</span></td>
+                  <td class="desc">{e.resumo}</td>
+                  <td><div class="chips">{e.tags.map((t) => <span class="chip">{t}</span>)}</div></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <div class="cards3">
+          <div class="painel">
+            <h3>Formação</h3>
+            <dl>{formacao.map((f) => (<div><dt>{f.ano}</dt><dd>{f.titulo}</dd></div>))}</dl>
+          </div>
+          <div class="painel">
+            <h3>Certificações e cursos</h3>
+            <dl>{certificacoes.map((f) => (<div><dt>{f.ano}</dt><dd>{f.titulo}</dd></div>))}</dl>
+          </div>
+          <div class="painel">
+            <h3>Idiomas</h3>
+            <dl>{perfil.idiomas.map((i) => (<div><dt>{i.idioma}</dt><dd>{i.nivel}</dd></div>))}</dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="portfolio" class="faixa">
+      <div class="in">
+        <header class="sec-head">
+          <p class="eyebrow">Portfolio</p>
+          <h2>Projetos</h2>
+        </header>
+        <div class="bento">
+          {portfolio.map((p, i) => (
+            <article class={`proj ${i === 0 ? 'proj-grande' : ''}`}>
+              <p class="proj-area">{p.area}</p>
+              <h3>{p.titulo}</h3>
+              <p class="proj-resumo">{p.resumo}</p>
+              {p.metrica && (
+                <p class="proj-metrica"><span>{p.metrica.valor}</span>{p.metrica.rotulo}</p>
+              )}
+              <div class="chips">{p.tags.map((t) => <span class="chip">{t}</span>)}</div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="mellon" class="faixa mellon">
+      <div class="in">
+        <header class="sec-head mellon-head">
+          <div>
+            <p class="eyebrow">Apps</p>
+            <h2 class="mellon-nome"><span class="mellon-logo" aria-hidden="true"></span>Mellon</h2>
+          </div>
+          <p class="mellon-slogan">{mellon.slogan}</p>
+        </header>
+        <div class="apps">
+          {mellon.apps.map((a) => (
+            <a class="app" href={a.url}>
+              <div class="app-top">
+                <span class="app-icone" aria-hidden="true">{a.nome[0]}</span>
+                <span class="status"><i></i>{a.status}</span>
+              </div>
+              <h3>{a.nome}</h3>
+              <p>{a.descricao}</p>
+              <div class="app-pe">
+                <span class="mono">{a.url.replace('https://', '')}</span>
+                <span class="seta">Abrir →</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="blog" class="faixa">
+      <div class="in">
+        <header class="sec-head sec-head-row">
+          <div>
+            <p class="eyebrow">Blog</p>
+            <h2>Últimos posts</h2>
+          </div>
+          <a class="link-mais" href="#blog">Ver todos →</a>
+        </header>
+        <div class="posts">
+          {posts.map((p) => (
+            <a class="post" href="#blog">
+              <div class="post-meta"><time datetime={p.data}>{dataCurta(p.data)}</time><span>{p.minutos} min</span></div>
+              <h3>{p.titulo}</h3>
+              <p>{p.resumo}</p>
+              <div class="chips">{p.tags.map((t) => <span class="chip">{t}</span>)}</div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="faixa rodape">
+    <div class="in rodape-in">
+      <span>© 2026 {perfil.nome}</span>
+      <span class="mono dim">astro build · firebase deploy</span>
+    </div>
+  </footer>
+
+  <Seletor atual={2} />
+</body>
+</html>
+
+<style is:global>
+  /* Layout: painel de dados. O hero é uma consulta SQL com o resultado, e as seções viram tabelas e grids de cards. */
+  :root {
+    --bg: #0a0f1a;
+    --bg-2: #0f1626;
+    --painel: #121b2e;
+    --linha: #1f2a42;
+    --texto: #e3e9f5;
+    --dim: #8592ad;
+    --gelo: #7dd3fc;
+    --gelo-2: #bae6fd;
+    --ok: #4ade80;
+    --display: 'Space Grotesk', system-ui, sans-serif;
+    --sans: 'Inter', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--texto);
+    font: 400 16px/1.6 var(--sans);
+  }
+  body::before { content: ''; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); background: var(--bg); z-index: 10; }
+  a { color: var(--gelo); text-decoration: none; }
+  a:focus-visible { outline: 2px solid var(--gelo); outline-offset: 3px; border-radius: 6px; }
+  .in { max-width: 1120px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .mono { font-family: var(--mono); font-size: 13px; }
+  .dim { color: var(--dim); }
+
+  .topo { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(10, 15, 26, 0.85); backdrop-filter: blur(10px); border-bottom: 1px solid var(--linha); }
+  .topo-in { max-width: 1120px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-block: 14px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .marca { font: 600 18px var(--display); color: var(--texto); display: flex; align-items: center; gap: 10px; }
+  .marca-p { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 7px; background: var(--gelo); color: var(--bg); font-weight: 700; }
+  .topo nav { display: flex; gap: 22px; flex-wrap: wrap; }
+  .topo nav a { color: var(--dim); font-size: 14px; font-weight: 500; }
+  .topo nav a:hover { color: var(--texto); }
+
+  .faixa { padding-block: 80px; border-bottom: 1px solid var(--linha); }
+  .hero { padding-block: 72px; background-color: var(--bg); background-image: radial-gradient(ellipse 80% 70% at 70% 20%, rgba(125, 211, 252, 0.08), transparent 70%), linear-gradient(rgba(31, 42, 66, 0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(31, 42, 66, 0.6) 1px, transparent 1px); background-size: auto, 48px 48px, 48px 48px; }
+  .hero-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 56px; align-items: center; }
+  .hero-txt { min-width: 0; }
+  .eyebrow { font: 500 12px var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--gelo); margin: 0 0 14px; }
+  h1, h2, h3 { font-family: var(--display); text-wrap: balance; }
+  .hero h1 { font-size: clamp(42px, 6.4vw, 76px); line-height: 1; letter-spacing: -0.035em; margin: 0; font-weight: 700; }
+  .cargo { font: 500 18px var(--display); color: var(--gelo-2); margin: 16px 0 0; }
+  .resumo { color: var(--dim); font-size: 17px; max-width: 54ch; margin: 18px 0 0; }
+  .ctas { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 30px; }
+  .btn { padding: 11px 18px; border-radius: 10px; background: var(--gelo); color: var(--bg); font-weight: 600; font-size: 15px; }
+  .btn:hover { background: var(--gelo-2); }
+  .btn-2 { background: transparent; color: var(--texto); border: 1px solid var(--linha); }
+  .btn-2:hover { background: var(--painel); }
+  .mail { font: 400 13px var(--mono); color: var(--dim); user-select: all; margin-left: 6px; }
+
+  .query { margin: 0; background: var(--painel); border: 1px solid var(--linha); border-radius: 14px; overflow: hidden; box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.6); min-width: 0; }
+  .query-bar { display: flex; gap: 6px; align-items: center; padding: 12px 14px; border-bottom: 1px solid var(--linha); background: var(--bg-2); }
+  .query-bar span { width: 10px; height: 10px; border-radius: 50%; background: var(--linha); }
+  .query-bar em { font: normal 12px var(--mono); color: var(--dim); margin-left: 8px; }
+  .sql { margin: 0; padding: 20px; font: 400 14px/1.7 var(--mono); color: var(--texto); overflow-x: auto; }
+  .sql b { color: var(--gelo); font-weight: 500; }
+  .sql s { text-decoration: none; color: #fbbf24; }
+  .result { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--linha); }
+  .kpi { padding: 18px 16px; display: flex; flex-direction: column; gap: 4px; }
+  .kpi + .kpi { border-left: 1px solid var(--linha); }
+  .kpi-v { font: 700 32px/1 var(--display); color: var(--texto); font-variant-numeric: tabular-nums; }
+  .kpi-r { font-size: 12px; color: var(--dim); line-height: 1.35; }
+  .query figcaption { padding: 10px 16px; font: 400 12px var(--mono); color: var(--ok); border-top: 1px solid var(--linha); background: var(--bg-2); }
+
+  .sec-head { margin-bottom: 36px; }
+  .sec-head h2 { font-size: clamp(30px, 4vw, 44px); margin: 0; letter-spacing: -0.02em; line-height: 1.1; }
+  .sec-head-row { display: flex; justify-content: space-between; align-items: end; gap: 16px; flex-wrap: wrap; }
+  .link-mais { font-weight: 500; }
+  .link-mais:hover { color: var(--gelo-2); }
+
+  .tabela-wrap { overflow-x: auto; border: 1px solid var(--linha); border-radius: 14px; background: var(--bg-2); }
+  .tabela { width: 100%; border-collapse: collapse; min-width: 760px; }
+  .tabela th { text-align: left; font: 500 11px var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--dim); padding: 14px 18px; border-bottom: 1px solid var(--linha); background: var(--painel); }
+  .tabela td { padding: 18px; border-bottom: 1px solid var(--linha); vertical-align: top; font-size: 15px; }
+  .tabela tr:last-child td { border-bottom: 0; }
+  .tabela tbody tr:hover { background: var(--painel); }
+  .periodo { font: 500 14px var(--mono); color: var(--gelo); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .periodo span { color: var(--dim); margin: 0 6px; }
+  .tabela strong { display: block; font-family: var(--display); font-size: 16px; }
+  .cargo-t { display: block; color: var(--dim); font-size: 13px; margin-top: 2px; }
+  .desc { color: var(--dim); max-width: 46ch; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { font: 400 12px var(--mono); padding: 3px 8px; border-radius: 6px; background: rgba(125, 211, 252, 0.08); color: var(--gelo-2); border: 1px solid rgba(125, 211, 252, 0.15); white-space: nowrap; }
+
+  .cards3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 16px; }
+  .painel { background: var(--bg-2); border: 1px solid var(--linha); border-radius: 14px; padding: 22px; }
+  .painel h3 { margin: 0 0 14px; font-size: 16px; }
+  .painel dl { margin: 0; display: grid; gap: 10px; }
+  .painel dl div { display: grid; grid-template-columns: 76px 1fr; gap: 10px; font-size: 14px; }
+  .painel dt { font-family: var(--mono); font-size: 13px; color: var(--gelo); }
+  .painel dd { margin: 0; color: var(--dim); }
+
+  .bento { display: grid; grid-template-columns: 1.1fr 1fr; gap: 16px; }
+  .proj { background: var(--bg-2); border: 1px solid var(--linha); border-radius: 14px; padding: 26px; display: flex; flex-direction: column; gap: 12px; transition: border-color 0.2s, transform 0.2s; }
+  .proj:hover { border-color: rgba(125, 211, 252, 0.4); transform: translateY(-2px); }
+  .proj-grande { grid-row: span 3; background: linear-gradient(160deg, rgba(125, 211, 252, 0.1), var(--bg-2) 55%); }
+  .proj-area { margin: 0; font: 500 11px var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--gelo); }
+  .proj h3 { margin: 0; font-size: 21px; line-height: 1.2; }
+  .proj-resumo { margin: 0; color: var(--dim); font-size: 15px; flex: 1; }
+  .proj-metrica { margin: 0; display: flex; flex-direction: column; font-size: 13px; color: var(--dim); }
+  .proj-metrica span { font: 700 44px/1 var(--display); color: var(--texto); letter-spacing: -0.03em; }
+  .proj:not(.proj-grande) .proj-metrica span { font-size: 30px; }
+
+  .mellon { background: var(--bg-2); }
+  .mellon-head { display: flex; justify-content: space-between; align-items: end; gap: 16px; flex-wrap: wrap; }
+  .mellon-nome { display: flex; align-items: center; gap: 14px; }
+  .mellon-logo { width: 38px; height: 38px; border-radius: 50%; background: conic-gradient(from 200deg, var(--gelo), #a5b4fc, var(--gelo)); position: relative; }
+  .mellon-logo::after { content: ''; position: absolute; inset: 10px; border-radius: 50%; background: var(--bg-2); }
+  .mellon-slogan { color: var(--dim); margin: 0; max-width: 36ch; }
+  .apps { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .app { display: flex; flex-direction: column; gap: 12px; padding: 28px; border-radius: 16px; background: var(--painel); border: 1px solid var(--linha); color: var(--texto); transition: border-color 0.2s; }
+  .app:hover { border-color: var(--gelo); }
+  .app:hover .seta { color: var(--gelo-2); transform: translateX(3px); }
+  .app-top { display: flex; justify-content: space-between; align-items: center; }
+  .app-icone { width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center; font: 700 24px var(--display); background: linear-gradient(140deg, var(--gelo), #818cf8); color: var(--bg); }
+  .status { display: inline-flex; align-items: center; gap: 6px; font: 400 12px var(--mono); color: var(--ok); }
+  .status i { width: 7px; height: 7px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 10px var(--ok); }
+  .app h3 { margin: 0; font-size: 26px; }
+  .app p { margin: 0; color: var(--dim); flex: 1; }
+  .app-pe { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding-top: 14px; border-top: 1px solid var(--linha); color: var(--dim); }
+  .seta { font-weight: 600; color: var(--gelo); transition: transform 0.2s; }
+
+  .posts { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .post { display: flex; flex-direction: column; gap: 10px; padding: 24px; border-radius: 14px; border: 1px solid var(--linha); color: var(--texto); transition: background 0.2s; }
+  .post:hover { background: var(--bg-2); }
+  .post:hover h3 { color: var(--gelo-2); }
+  .post-meta { display: flex; gap: 14px; font: 400 12px var(--mono); color: var(--dim); }
+  .post h3 { margin: 0; font-size: 20px; line-height: 1.25; transition: color 0.2s; }
+  .post p { margin: 0; color: var(--dim); font-size: 15px; flex: 1; }
+
+  .rodape { padding-block: 32px 96px; border-bottom: 0; }
+  .rodape-in { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; color: var(--dim); font-size: 14px; }
+
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    .proj-grande { grid-row: auto; grid-column: 1 / -1; }
+    .cards3 { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .faixa { padding-block: 56px; }
+    .topo nav { gap: 14px; }
+    .topo nav a { font-size: 13px; }
+    .marca .dim { display: none; }
+    .result { grid-template-columns: 1fr 1fr; }
+    .kpi:nth-child(3) { border-left: 0; }
+    .kpi:nth-child(n + 3) { border-top: 1px solid var(--linha); }
+    .bento, .apps, .posts { grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } html { scroll-behavior: auto; } }
+</style>

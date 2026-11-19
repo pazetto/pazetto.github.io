@@ -1,0 +1,274 @@
+---
+import Seletor from '../components/Seletor.astro';
+import { perfil, experiencias, formacao, certificacoes, portfolio, mellon, posts, dataCurta } from '../data/perfil';
+
+// "hash" de commit estável por empresa, só para o visual de git log
+const hash = (s: string) =>
+  [...s].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7).toString(16).padStart(7, '0').slice(0, 7);
+---
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Felipe Pazetto · Terminal</title>
+  <link rel="icon" href="favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500&display=swap" />
+</head>
+<body>
+  <header class="barra">
+    <div class="barra-in">
+      <span class="sess">[pazetto.net]</span>
+      <nav aria-label="Seções">
+        <a href="#curriculo">0:curriculo</a>
+        <a href="#portfolio">1:portfolio</a>
+        <a href="#mellon">2:mellon</a>
+        <a href="#blog">3:blog</a>
+      </nav>
+      <span class="loc">{perfil.local}</span>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <p class="cmd"><span class="ps">felipe@pazetto:~$</span> whoami</p>
+      <h1>{perfil.nome}<span class="cursor" aria-hidden="true"></span></h1>
+      <p class="cargo">{perfil.cargo}</p>
+      <p class="resumo">{perfil.resumo}</p>
+      <ul class="stack" aria-label="Tecnologias">
+        {perfil.stack.map((s) => <li>{s}</li>)}
+      </ul>
+      <p class="links">
+        <a href={perfil.linkedin}>linkedin</a>
+        <a href={perfil.github}>github</a>
+        <span class="mail">{perfil.email}</span>
+      </p>
+    </section>
+
+    <section id="curriculo" class="bloco">
+      <p class="cmd"><span class="ps">~$</span> git log --carreira --oneline</p>
+      <ol class="log">
+        {experiencias.map((e) => (
+          <li>
+            <div class="log-meta">
+              <span class="hash">{hash(e.empresa)}</span>
+              <span class="periodo">{e.inicio}..{e.fim}</span>
+            </div>
+            <div class="log-corpo">
+              <h3>{e.empresa} <span class="cargo-l">· {e.cargo}</span></h3>
+              <p>{e.resumo}</p>
+              <p class="tags">{e.tags.map((t) => <span>#{t}</span>)}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+
+      <div class="duas">
+        <div>
+          <p class="cmd"><span class="ps">~$</span> cat formacao.txt</p>
+          <ul class="lista">
+            {formacao.map((f) => <li><span class="ano">{f.ano}</span>{f.titulo}</li>)}
+          </ul>
+        </div>
+        <div>
+          <p class="cmd"><span class="ps">~$</span> cat certificacoes.txt</p>
+          <ul class="lista">
+            {certificacoes.map((f) => <li><span class="ano">{f.ano}</span>{f.titulo}</li>)}
+          </ul>
+          <p class="cmd"><span class="ps">~$</span> locale -a</p>
+          <ul class="lista">
+            {perfil.idiomas.map((i) => <li><span class="ano">{i.codigo}</span>{i.idioma} · {i.nivel}</li>)}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="portfolio" class="bloco">
+      <p class="cmd"><span class="ps">~$</span> ls -l portfolio/</p>
+      <div class="ls">
+        {portfolio.map((p) => (
+          <article class="ls-item">
+            <div class="ls-perm">drwxr-xr-x</div>
+            <div class="ls-area">{p.area}</div>
+            <div class="ls-corpo">
+              <h3>{p.titulo}/</h3>
+              <p>{p.resumo}</p>
+              {p.metrica && <p class="metrica"><strong>{p.metrica.valor}</strong> {p.metrica.rotulo}</p>}
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section id="mellon" class="bloco">
+      <p class="cmd"><span class="ps">~$</span> ./mellon --list-apps</p>
+      <div class="mellon">
+        <div class="mellon-head">
+          <pre class="ascii" aria-label="Mellon">{`┌┬┐┌─┐┬  ┬  ┌─┐┌┐┌
+│││├┤ │  │  │ ││││
+┴ ┴└─┘┴─┘┴─┘└─┘┘└┘`}</pre>
+          <p>{mellon.slogan}</p>
+        </div>
+        <div class="apps">
+          {mellon.apps.map((a) => (
+            <a class="app" href={a.url}>
+              <span class="status">● {a.status}</span>
+              <h3>{a.nome}</h3>
+              <p>{a.descricao}</p>
+              <span class="url">{a.url.replace('https://', '')} →</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="blog" class="bloco">
+      <p class="cmd"><span class="ps">~$</span> tail -n 4 blog.log</p>
+      <ul class="posts">
+        {posts.map((p) => (
+          <li>
+            <a href="#blog">
+              <time datetime={p.data}>{p.data}</time>
+              <span class="nivel">[{p.tags[0].toUpperCase()}]</span>
+              <span class="tit">{p.titulo}</span>
+              <span class="min">{p.minutos} min</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+      <p class="mais"><a href="#blog">ver todos os posts →</a></p>
+    </section>
+  </main>
+
+  <footer class="wrap rodape">
+    <p><span class="ps">~$</span> exit <span class="dim">· © 2026 {perfil.nome} · feito em Astro, hospedado no Firebase</span></p>
+  </footer>
+
+  <Seletor atual={1} />
+</body>
+</html>
+
+<style is:global>
+  /* Layout: uma sessão de terminal; cada seção é um comando e a sua saída. */
+  :root {
+    --bg: #0d0b08;
+    --bg-2: #16130e;
+    --linha: #2c261c;
+    --texto: #e9dfcc;
+    --dim: #8f846f;
+    --ambar: #ffb454;
+    --ambar-2: #ffcf8a;
+    --ok: #9fd18b;
+    --mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    --sans: 'IBM Plex Sans', system-ui, sans-serif;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--texto);
+    font: 400 15px/1.65 var(--mono);
+    background-image: repeating-linear-gradient(0deg, rgba(255, 180, 84, 0.025) 0 1px, transparent 1px 3px);
+  }
+  body::before { content: ''; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); background: var(--bg-2); z-index: 10; }
+  a { color: var(--ambar); text-decoration: none; }
+  a:hover { color: var(--ambar-2); text-decoration: underline; }
+  a:focus-visible { outline: 2px solid var(--ambar); outline-offset: 3px; }
+  .wrap { max-width: 960px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+
+  .barra { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--bg-2); border-bottom: 1px solid var(--linha); font-size: 13px; }
+  .barra-in { max-width: 960px; margin: 0 auto; display: flex; gap: 16px; align-items: center; padding-block: 10px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .barra nav { display: flex; gap: 14px; flex-wrap: wrap; flex: 1; }
+  .barra nav a { color: var(--dim); }
+  .barra nav a:hover { color: var(--ambar); text-decoration: none; }
+  .sess { color: var(--bg); background: var(--ambar); padding: 1px 8px; font-weight: 600; }
+  .loc { color: var(--dim); }
+
+  .cmd { color: var(--dim); margin: 0 0 18px; font-size: 14px; }
+  .ps { color: var(--ok); margin-right: 8px; }
+
+  .hero { padding-block: 72px 56px; border-bottom: 1px dashed var(--linha); }
+  .hero h1 { font-size: clamp(38px, 7vw, 72px); line-height: 1.02; margin: 0; color: var(--ambar); font-weight: 600; letter-spacing: -0.02em; text-wrap: balance; text-shadow: 0 0 24px rgba(255, 180, 84, 0.25); }
+  .cursor { display: inline-block; width: 0.5em; height: 0.85em; margin-left: 0.12em; background: var(--ambar); vertical-align: -0.04em; animation: pisca 1.1s steps(1) infinite; }
+  @keyframes pisca { 50% { opacity: 0; } }
+  .cargo { color: var(--texto); font-size: 17px; margin: 14px 0 0; }
+  .resumo { font-family: var(--sans); font-size: 17px; color: var(--texto); opacity: 0.86; max-width: 62ch; margin: 18px 0 0; }
+  .stack { list-style: none; padding: 0; margin: 26px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .stack li { border: 1px solid var(--linha); padding: 3px 10px; font-size: 13px; color: var(--ambar-2); }
+  .links { display: flex; flex-wrap: wrap; gap: 20px; margin: 26px 0 0; font-size: 14px; }
+  .links a::before { content: '→ '; }
+  .mail { color: var(--dim); user-select: all; }
+
+  .bloco { padding-block: 56px; border-bottom: 1px dashed var(--linha); }
+
+  .log { list-style: none; padding: 0; margin: 0; display: grid; gap: 4px; }
+  .log li { display: grid; grid-template-columns: 170px 1fr; gap: 20px; padding: 16px 0; border-left: 1px solid var(--linha); padding-left: 20px; position: relative; }
+  .log li::before { content: ''; position: absolute; left: -5px; top: 24px; width: 9px; height: 9px; background: var(--bg); border: 1px solid var(--ambar); border-radius: 50%; }
+  .log li:first-child::before { background: var(--ambar); }
+  .log-meta { display: flex; flex-direction: column; font-size: 13px; }
+  .hash { color: var(--ambar); }
+  .periodo { color: var(--dim); }
+  .log-corpo { min-width: 0; }
+  .log h3 { margin: 0; font-size: 16px; font-weight: 600; }
+  .cargo-l { color: var(--dim); font-weight: 400; }
+  .log p { margin: 6px 0 0; font-family: var(--sans); opacity: 0.86; }
+  .tags { display: flex; flex-wrap: wrap; gap: 10px; font-family: var(--mono) !important; font-size: 12px; color: var(--ambar-2); }
+
+  .duas { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; }
+  .lista { list-style: none; padding: 0; margin: 0 0 28px; display: grid; gap: 8px; font-size: 14px; }
+  .lista li { display: grid; grid-template-columns: 64px 1fr; gap: 8px; }
+  .ano { color: var(--ambar); }
+
+  .ls { display: grid; gap: 0; border-top: 1px solid var(--linha); }
+  .ls-item { display: grid; grid-template-columns: 110px 110px 1fr; gap: 20px; padding: 20px 0; border-bottom: 1px solid var(--linha); transition: background 0.15s; }
+  .ls-item:hover { background: var(--bg-2); }
+  .ls-perm, .ls-area { font-size: 13px; color: var(--dim); padding-top: 2px; }
+  .ls-area { color: var(--ok); }
+  .ls-corpo { min-width: 0; }
+  .ls h3 { margin: 0; color: var(--ambar); font-size: 17px; font-weight: 600; }
+  .ls p { margin: 6px 0 0; font-family: var(--sans); opacity: 0.86; }
+  .metrica { font-family: var(--mono) !important; font-size: 13px; color: var(--dim); opacity: 1 !important; }
+  .metrica strong { color: var(--ambar-2); font-size: 15px; }
+
+  .mellon { border: 1px solid var(--linha); background: var(--bg-2); }
+  .mellon-head { padding: 24px; border-bottom: 1px solid var(--linha); display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between; }
+  .ascii { margin: 0; color: var(--ambar); font-size: 14px; line-height: 1.15; text-shadow: 0 0 18px rgba(255, 180, 84, 0.3); }
+  .mellon-head p { margin: 0; color: var(--dim); font-family: var(--sans); }
+  .apps { display: grid; grid-template-columns: 1fr 1fr; }
+  .app { display: flex; flex-direction: column; gap: 8px; padding: 24px; color: var(--texto); }
+  .app + .app { border-left: 1px solid var(--linha); }
+  .app:hover { background: #1d1913; text-decoration: none; color: var(--texto); }
+  .app h3 { margin: 0; font-size: 22px; color: var(--ambar); }
+  .app p { margin: 0; font-family: var(--sans); opacity: 0.86; flex: 1; }
+  .status { color: var(--ok); font-size: 12px; }
+  .url { color: var(--ambar-2); font-size: 13px; }
+
+  .posts { list-style: none; padding: 0; margin: 0; }
+  .posts a { display: grid; grid-template-columns: 100px 120px 1fr auto; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--linha); color: var(--texto); font-size: 14px; }
+  .posts a:hover { text-decoration: none; background: var(--bg-2); }
+  .posts a:hover .tit { color: var(--ambar); }
+  .posts time, .min { color: var(--dim); }
+  .nivel { color: var(--ok); }
+  .tit { min-width: 0; }
+  .mais { margin: 20px 0 0; font-size: 14px; }
+
+  .rodape { padding-block: 32px 96px; font-size: 13px; }
+  .dim { color: var(--dim); }
+
+  @media (max-width: 720px) {
+    .barra .loc { display: none; }
+    .log li { grid-template-columns: 1fr; gap: 6px; }
+    .log-meta { flex-direction: row; gap: 12px; }
+    .duas, .apps { grid-template-columns: 1fr; }
+    .app + .app { border-left: 0; border-top: 1px solid var(--linha); }
+    .ls-item { grid-template-columns: 1fr; gap: 4px; }
+    .ls-perm { display: none; }
+    .posts a { grid-template-columns: 1fr auto; gap: 4px 12px; }
+    .posts .nivel { display: none; }
+    .posts .tit { grid-column: 1 / -1; grid-row: 2; }
+  }
+  @media (prefers-reduced-motion: reduce) { .cursor { animation: none; } html { scroll-behavior: auto; } }
+</style>

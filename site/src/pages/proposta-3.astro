@@ -1,0 +1,276 @@
+---
+import Seletor from '../components/Seletor.astro';
+import { perfil, experiencias, formacao, certificacoes, portfolio, mellon, posts, dataCurta } from '../data/perfil';
+const [primeiro, ...resto] = perfil.nome.split(' ');
+---
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Felipe Pazetto · Editorial</title>
+  <link rel="icon" href="favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" />
+</head>
+<body>
+  <header class="topo">
+    <div class="in topo-in">
+      <a href="#inicio" class="marca">FP<span>.</span></a>
+      <nav aria-label="Seções">
+        <a href="#curriculo">Currículo</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#mellon">Mellon</a>
+        <a href="#blog">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="inicio" class="in hero">
+      <p class="rotulo">{perfil.cargo}</p>
+      <h1><span>{primeiro}</span><span class="h1-2">{resto.join(' ')}<i>.</i></span></h1>
+      <div class="hero-pe">
+        <p class="resumo">{perfil.resumo}</p>
+        <div class="anos">
+          <span class="anos-n">{perfil.anosExperiencia}</span>
+          <span class="anos-r">anos fazendo ERP<br />e dados funcionarem</span>
+        </div>
+      </div>
+      <ul class="stack">{perfil.stack.map((s) => <li>{s}</li>)}</ul>
+    </section>
+
+    <section id="curriculo" class="in secao">
+      <header class="secao-head">
+        <h2>Trajetória</h2>
+        <p>De suporte técnico a analista sênior de ERP, passando por gestão de projetos e operações globais.</p>
+      </header>
+      <ol class="linha">
+        {experiencias.map((e) => (
+          <li>
+            <div class="linha-ano"><span>{e.inicio}</span><small>até {e.fim}</small></div>
+            <div class="linha-corpo">
+              <h3>{e.empresa}</h3>
+              <p class="linha-cargo">{e.cargo}</p>
+              <p>{e.resumo}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+      <div class="extras">
+        <div>
+          <h3>Formação</h3>
+          <ul>{formacao.map((f) => <li><span>{f.ano}</span>{f.titulo}</li>)}</ul>
+        </div>
+        <div>
+          <h3>Cursos e certificações</h3>
+          <ul>{certificacoes.map((f) => <li><span>{f.ano}</span>{f.titulo}</li>)}</ul>
+        </div>
+        <div>
+          <h3>Idiomas</h3>
+          <ul>{perfil.idiomas.map((i) => <li><span>{i.idioma}</span>{i.nivel}</li>)}</ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="portfolio" class="in secao">
+      <header class="secao-head">
+        <h2>Portfolio</h2>
+        <p>Casos de ERP, banco de dados e integração, com o problema e o resultado de cada um.</p>
+      </header>
+      <div class="projetos">
+        {portfolio.map((p) => (
+          <a class="projeto" href="#portfolio">
+            <span class="projeto-area">{p.area}</span>
+            <h3>{p.titulo}</h3>
+            <p>{p.resumo}</p>
+            <span class="projeto-seta" aria-hidden="true">↗</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section id="mellon" class="mellon">
+      <div class="in mellon-in">
+        <div class="mellon-txt">
+          <p class="rotulo rotulo-esc">Um selo da casa</p>
+          <h2 class="mellon-nome">mellon</h2>
+          <p class="mellon-slogan">{mellon.slogan}</p>
+        </div>
+        <div class="mellon-apps">
+          {mellon.apps.map((a) => (
+            <a class="app" href={a.url}>
+              <div class="app-top"><h3>{a.nome}</h3><span class="app-st">{a.status}</span></div>
+              <p>{a.descricao}</p>
+              <span class="app-url">{a.url.replace('https://', '')} ↗</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="blog" class="in secao">
+      <header class="secao-head">
+        <h2>Blog</h2>
+        <p>Notas sobre SQL, Protheus, Power BI e o dia a dia de quem cuida de sistemas.</p>
+      </header>
+      <ul class="posts">
+        {posts.map((p) => (
+          <li>
+            <a href="#blog">
+              <time datetime={p.data}>{dataCurta(p.data)}</time>
+              <h3>{p.titulo}</h3>
+              <span class="post-tag">{p.tags[0]}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="in contato">
+      <h2>Vamos conversar?</h2>
+      <p class="contato-mail">{perfil.email}</p>
+      <div class="contato-links">
+        <a href={perfil.linkedin}>LinkedIn ↗</a>
+        <a href={perfil.github}>GitHub ↗</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="in rodape">© 2026 {perfil.nome} · {perfil.local}</footer>
+
+  <Seletor atual={3} />
+</body>
+</html>
+
+<style is:global>
+  /* Layout: editorial. Tipografia grande carrega a página, a trajetória é uma linha do tempo e a Mellon é a única faixa invertida. */
+  :root {
+    --bg: #111013;
+    --bg-2: #19171c;
+    --linha: #2a272f;
+    --texto: #f1ece6;
+    --dim: #9a939f;
+    --coral: #ff8a7a;
+    --coral-esc: #2a1512;
+    --display: 'Bricolage Grotesque', 'Instrument Sans', system-ui, sans-serif;
+    --sans: 'Instrument Sans', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  body { margin: 0; background: var(--bg); color: var(--texto); font: 400 17px/1.6 var(--sans); }
+  body::before { content: ''; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); background: var(--bg); z-index: 10; }
+  a { color: inherit; text-decoration: none; }
+  a:focus-visible { outline: 2px solid var(--coral); outline-offset: 4px; }
+  .in { max-width: 1180px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  h1, h2, h3 { font-family: var(--display); text-wrap: balance; }
+
+  .topo { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(17, 16, 19, 0.88); backdrop-filter: blur(10px); }
+  .topo-in { display: flex; justify-content: space-between; align-items: center; padding-block: 18px; gap: 16px; }
+  .marca { font: 800 22px var(--display); letter-spacing: -0.04em; }
+  .marca span { color: var(--coral); }
+  .topo nav { display: flex; gap: 28px; flex-wrap: wrap; }
+  .topo nav a { font-size: 15px; color: var(--dim); position: relative; }
+  .topo nav a::after { content: ''; position: absolute; left: 0; right: 100%; bottom: -3px; height: 1.5px; background: var(--coral); transition: right 0.25s; }
+  .topo nav a:hover { color: var(--texto); }
+  .topo nav a:hover::after { right: 0; }
+
+  .rotulo { font: 400 13px var(--mono); color: var(--coral); margin: 0; letter-spacing: 0.02em; }
+  .hero { padding-block: 56px 72px; }
+  .hero h1 { margin: 20px 0 0; font-weight: 800; font-size: clamp(64px, 14vw, 196px); line-height: 0.86; letter-spacing: -0.055em; display: flex; flex-direction: column; }
+  .h1-2 { padding-left: 0.6em; color: transparent; -webkit-text-stroke: 1.5px var(--texto); }
+  .h1-2 i { font-style: normal; color: var(--coral); -webkit-text-stroke: 0; }
+  .hero-pe { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; margin-top: 48px; align-items: end; }
+  .resumo { margin: 0; font-size: 20px; line-height: 1.55; max-width: 52ch; }
+  .anos { display: flex; align-items: center; gap: 16px; justify-self: end; }
+  .anos-n { font: 800 96px/0.8 var(--display); color: var(--coral); letter-spacing: -0.05em; }
+  .anos-r { color: var(--dim); font-size: 15px; line-height: 1.35; }
+  .stack { list-style: none; padding: 28px 0 0; margin: 40px 0 0; border-top: 1px solid var(--linha); display: flex; flex-wrap: wrap; gap: 10px 28px; color: var(--dim); font-size: 15px; }
+  .stack li::before { content: '+ '; color: var(--coral); }
+
+  .secao { padding-block: 96px; border-top: 1px solid var(--linha); }
+  .secao-head { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: end; margin-bottom: 56px; }
+  .secao-head h2 { margin: 0; font-size: clamp(48px, 8vw, 104px); font-weight: 800; letter-spacing: -0.045em; line-height: 0.9; }
+  .secao-head p { margin: 0; color: var(--dim); max-width: 42ch; font-size: 18px; }
+
+  .linha { list-style: none; padding: 0; margin: 0; }
+  .linha li { display: grid; grid-template-columns: 220px 1fr; gap: 32px; padding: 32px 0; border-top: 1px solid var(--linha); }
+  .linha li:hover .linha-ano span { color: var(--coral); }
+  .linha-ano { display: flex; flex-direction: column; }
+  .linha-ano span { font: 600 56px/1 var(--display); letter-spacing: -0.04em; transition: color 0.2s; font-variant-numeric: tabular-nums; }
+  .linha-ano small { font: 400 13px var(--mono); color: var(--dim); margin-top: 6px; }
+  .linha-corpo { min-width: 0; }
+  .linha h3 { margin: 0; font-size: 28px; font-weight: 600; letter-spacing: -0.02em; }
+  .linha-cargo { margin: 4px 0 12px; color: var(--coral); font-size: 15px; }
+  .linha-corpo p:last-child { margin: 0; color: var(--dim); max-width: 64ch; }
+
+  .extras { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 56px; padding-top: 40px; border-top: 1px solid var(--linha); }
+  .extras h3 { margin: 0 0 16px; font-size: 20px; font-weight: 600; }
+  .extras ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+  .extras li { display: flex; flex-direction: column; color: var(--dim); font-size: 15px; line-height: 1.45; }
+  .extras li span { font: 400 12px var(--mono); color: var(--texto); }
+
+  .projetos { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-top: 1px solid var(--linha); }
+  .projeto { position: relative; padding: 40px 56px 40px 0; border-bottom: 1px solid var(--linha); display: flex; flex-direction: column; gap: 12px; }
+  .projeto:nth-child(odd) { border-right: 1px solid var(--linha); padding-right: 64px; }
+  .projeto:nth-child(even) { padding-left: 40px; }
+  .projeto-area { font: 400 12px var(--mono); color: var(--dim); text-transform: uppercase; letter-spacing: 0.06em; }
+  .projeto h3 { margin: 0; font-size: 32px; font-weight: 600; line-height: 1.05; letter-spacing: -0.025em; transition: color 0.2s; }
+  .projeto p { margin: 0; color: var(--dim); }
+  .projeto-seta { position: absolute; top: 36px; right: 24px; font-size: 26px; color: var(--dim); transition: transform 0.25s, color 0.25s; }
+  .projeto:hover h3 { color: var(--coral); }
+  .projeto:hover .projeto-seta { color: var(--coral); transform: translate(4px, -4px); }
+
+  .mellon { background: var(--coral); color: var(--coral-esc); padding-block: 96px; }
+  .mellon-in { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 56px; align-items: center; }
+  .rotulo-esc { color: var(--coral-esc); opacity: 0.7; }
+  .mellon-nome { margin: 8px 0 0; font-size: clamp(72px, 13vw, 168px); font-weight: 800; letter-spacing: -0.06em; line-height: 0.85; }
+  .mellon-slogan { margin: 20px 0 0; font-size: 20px; max-width: 28ch; }
+  .mellon-apps { display: grid; gap: 16px; }
+  .app { background: var(--coral-esc); color: var(--texto); border-radius: 20px; padding: 28px 30px; display: flex; flex-direction: column; gap: 10px; transition: transform 0.25s; }
+  .app:hover { transform: translateX(-6px); }
+  .app-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .app h3 { margin: 0; font-size: 30px; font-weight: 600; letter-spacing: -0.02em; }
+  .app-st { font: 400 12px var(--mono); color: var(--coral); border: 1px solid var(--coral); border-radius: 999px; padding: 3px 10px; white-space: nowrap; }
+  .app p { margin: 0; color: #cbbdb8; }
+  .app-url { font: 400 13px var(--mono); color: var(--coral); }
+
+  .posts { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--linha); }
+  .posts a { display: grid; grid-template-columns: 140px 1fr auto; gap: 32px; align-items: baseline; padding: 28px 0; border-bottom: 1px solid var(--linha); }
+  .posts time { font: 400 13px var(--mono); color: var(--dim); }
+  .posts h3 { margin: 0; font-size: clamp(22px, 2.6vw, 32px); font-weight: 600; letter-spacing: -0.02em; line-height: 1.15; transition: color 0.2s, transform 0.25s; }
+  .posts a:hover h3 { color: var(--coral); transform: translateX(8px); }
+  .post-tag { font-size: 14px; color: var(--dim); white-space: nowrap; }
+
+  .contato { padding-block: 112px 64px; border-top: 1px solid var(--linha); text-align: left; }
+  .contato h2 { margin: 0; font-size: clamp(52px, 9vw, 128px); font-weight: 800; letter-spacing: -0.05em; line-height: 0.9; }
+  .contato-mail { margin: 28px 0 0; font: 400 clamp(18px, 2.4vw, 26px) var(--mono); color: var(--coral); user-select: all; overflow-wrap: anywhere; }
+  .contato-links { display: flex; gap: 28px; margin-top: 24px; font-size: 18px; }
+  .contato-links a { border-bottom: 1px solid var(--linha); padding-bottom: 2px; }
+  .contato-links a:hover { border-color: var(--coral); color: var(--coral); }
+  .rodape { padding-block: 24px 96px; color: var(--dim); font-size: 14px; }
+
+  @media (max-width: 860px) {
+    .hero-pe, .secao-head, .mellon-in { grid-template-columns: 1fr; }
+    .anos { justify-self: start; }
+    .linha li { grid-template-columns: 1fr; gap: 12px; }
+    .linha-ano { flex-direction: row; align-items: baseline; gap: 12px; }
+    .linha-ano span { font-size: 40px; }
+    .extras { grid-template-columns: 1fr; gap: 32px; }
+    .projetos { grid-template-columns: 1fr; }
+    .projeto, .projeto:nth-child(odd), .projeto:nth-child(even) { padding: 32px 48px 32px 0; border-right: 0; }
+    .projeto-seta { right: 0; }
+    .posts a { grid-template-columns: 1fr; gap: 6px; }
+    .post-tag { display: none; }
+  }
+  @media (max-width: 560px) {
+    .topo nav { gap: 16px; }
+    .topo nav a { font-size: 14px; }
+    .secao, .mellon { padding-block: 64px; }
+    .h1-2 { padding-left: 0; -webkit-text-stroke-width: 1px; }
+    .anos-n { font-size: 72px; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } html { scroll-behavior: auto; } }
+</style>

@@ -1,0 +1,39 @@
+---
+// Barra flutuante só da fase de propostas: troca entre as 3 versões.
+// Sai do site final.
+interface Props { atual: 1 | 2 | 3 }
+const { atual } = Astro.props;
+const itens = [1, 2, 3] as const;
+---
+<nav class="seletor" aria-label="Trocar proposta">
+  <a href="index.html" class="seletor-voltar">Propostas</a>
+  {itens.map((n) => (
+    <a href={`proposta-${n}.html`} aria-current={n === atual ? 'page' : undefined}>{n}</a>
+  ))}
+</nav>
+<style is:global>
+  .seletor {
+    position: fixed;
+    right: max(16px, calc(env(safe-area-inset-right, 0px) + 16px));
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 16px);
+    z-index: 50;
+    display: flex;
+    gap: 4px;
+    padding: 4px;
+    border-radius: 999px;
+    background: rgba(20, 20, 24, 0.86);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(8px);
+    font: 500 13px/1 system-ui, sans-serif;
+  }
+  .seletor a {
+    color: #d8d8de;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 999px;
+  }
+  .seletor a:hover { background: rgba(255, 255, 255, 0.08); }
+  .seletor a[aria-current='page'] { background: #f2f2f5; color: #121216; }
+  .seletor a:focus-visible { outline: 2px solid #f2f2f5; outline-offset: 2px; }
+  .seletor-voltar { color: #9a9aa6 !important; }
+</style>
