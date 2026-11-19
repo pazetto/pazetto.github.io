@@ -3,3 +3,8 @@ dist/
 .astro/
 dist-preview/
 .firebase/
+
+# skills de agente instaladas pelo firebase init
+.agents/
+.claude/
+skills-lock.json
