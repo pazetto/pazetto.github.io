@@ -1,0 +1,69 @@
+rules_version = '2';
+
+// Comentários do blog.
+// - Qualquer pessoa lê.
+// - Só quem entrou com Google comenta, e no máximo 1 comentário a cada 30 s
+//   (controlado pelo documento usuarios/{uid}, gravado no mesmo batch).
+// - Ninguém edita. Apaga: o autor ou o dono do site.
+service cloud.firestore {
+  match /databases/{db}/documents {
+
+    function logado() {
+      return request.auth != null;
+    }
+
+    function dono() {
+      return logado()
+        && request.auth.token.email == 'felipe@pazetto.net'
+        && request.auth.token.email_verified == true;
+    }
+
+    match /comentarios/{id} {
+      allow read: if true;
+
+      allow create: if logado()
+        && request.resource.data.keys().hasOnly(['post', 'texto', 'uid', 'nome', 'foto', 'criadoEm', 'paiId'])
+        && request.resource.data.keys().hasAll(['post', 'texto', 'uid', 'nome', 'criadoEm', 'paiId'])
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.post is string
+        && request.resource.data.post.matches('^[a-z0-9-]{1,80}$')
+        && request.resource.data.texto is string
+        && request.resource.data.texto.size() >= 2
+        && request.resource.data.texto.size() <= 2000
+        && request.resource.data.nome is string
+        && request.resource.data.nome.size() >= 1
+        && request.resource.data.nome.size() <= 80
+        && (!('foto' in request.resource.data)
+            || request.resource.data.foto == null
+            || (request.resource.data.foto is string && request.resource.data.foto.size() <= 500))
+        && request.resource.data.criadoEm == request.time
+        && respostaValida(request.resource.data)
+        // limite de frequência: o batch precisa atualizar usuarios/{uid} agora
+        && getAfter(/databases/$(db)/documents/usuarios/$(request.auth.uid)).data.ultimo == request.time;
+
+      allow delete: if logado() && (resource.data.uid == request.auth.uid || dono());
+      allow update: if false;
+    }
+
+    // Resposta só a um comentário de primeiro nível do mesmo post.
+    function respostaValida(d) {
+      return d.paiId == null
+        || (d.paiId is string
+            && exists(/databases/$(db)/documents/comentarios/$(d.paiId))
+            && get(/databases/$(db)/documents/comentarios/$(d.paiId)).data.post == d.post
+            && get(/databases/$(db)/documents/comentarios/$(d.paiId)).data.paiId == null);
+    }
+
+    match /usuarios/{uid} {
+      allow read: if logado() && request.auth.uid == uid;
+      allow create: if logado() && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['ultimo'])
+        && request.resource.data.ultimo == request.time;
+      allow update: if logado() && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['ultimo'])
+        && request.resource.data.ultimo == request.time
+        && request.time > resource.data.ultimo + duration.value(30, 's');
+      allow delete: if false;
+    }
+  }
+}
