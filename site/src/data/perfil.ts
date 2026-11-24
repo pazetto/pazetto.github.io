@@ -6,7 +6,7 @@ export const perfil = {
   cargo: 'Coordenador de Sistemas · ERP & Dados',
   local: 'Jundiaí / SP',
   resumo:
-    'Há 16 anos transformo processos de negócio em sistemas que funcionam. Hoje coordeno a área de sistemas da America Embalagens. Antes disso, desenvolvi e sustentei ERPs (TOTVS Protheus e Microsoft Dynamics), otimizei bancos SQL Server e construí integrações e ferramentas fullstack.',
+    'Há 16 anos transformo processos de negócio em sistemas que funcionam. Hoje coordeno a área de sistemas de uma multinacional de embalagens. Antes disso, desenvolvi e sustentei ERPs (TOTVS Protheus e Microsoft Dynamics), otimizei bancos SQL Server e construí integrações e ferramentas fullstack.',
   anosExperiencia: 16,
   email: 'felipe@pazetto.net',
   linkedin: 'https://linkedin.com/in/pazetto',
