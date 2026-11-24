@@ -1,0 +1,124 @@
+---
+interface Props { post: string }
+const { post } = Astro.props;
+---
+<section class="com" aria-labelledby="com-titulo" data-comentarios data-post={post}>
+  <header class="com-head">
+    <h2 id="com-titulo">Comentários</h2>
+    <span class="com-total" data-total></span>
+  </header>
+
+  <div class="com-caixa">
+    <div class="com-deslogado" data-deslogado>
+      <p>Entre com sua conta Google para comentar. Só seu nome e sua foto aparecem.</p>
+      <button type="button" class="com-google" data-entrar>
+        <svg viewBox="0 0 48 48" width="18" height="18" aria-hidden="true">
+          <path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/>
+          <path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/>
+          <path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/>
+          <path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/>
+        </svg>
+        Entrar com Google
+      </button>
+    </div>
+
+    <form class="com-form" data-logado hidden>
+      <div class="com-eu">
+        <span data-eu-foto></span>
+        <span class="com-eu-nome" data-eu-nome></span>
+        <button type="button" class="com-link" data-sair>Sair</button>
+      </div>
+      <p class="com-resp" data-resp hidden>
+        Respondendo a <strong data-resp-nome></strong>
+        <button type="button" class="com-link" data-cancelar>Cancelar</button>
+      </p>
+      <label for="com-texto" class="com-sr">Seu comentário</label>
+      <textarea id="com-texto" name="texto" rows="4" maxlength="2000" placeholder="Escreva seu comentário…" required></textarea>
+      <div class="com-rodape">
+        <span class="com-contador" data-contador>0 / 2000</span>
+        <button type="submit" class="com-enviar" data-enviar>Publicar</button>
+      </div>
+    </form>
+    <p class="com-erro" data-erro role="alert" hidden></p>
+  </div>
+
+  <ol class="com-lista" data-lista>
+    <li class="com-vazio">Carregando comentários…</li>
+  </ol>
+  <noscript><p class="com-vazio">Ative o JavaScript para ver e escrever comentários.</p></noscript>
+</section>
+
+<script>
+  // Só baixa o Firebase quando a seção de comentários chega perto da tela.
+  const raiz = document.querySelector<HTMLElement>('[data-comentarios]');
+  if (raiz) {
+    const carregar = () => import('../lib/comentarios').then((m) => m.iniciarComentarios(raiz));
+    if ('IntersectionObserver' in window) {
+      const obs = new IntersectionObserver((entradas) => {
+        if (entradas.some((e) => e.isIntersecting)) { obs.disconnect(); carregar(); }
+      }, { rootMargin: '600px 0px' });
+      obs.observe(raiz);
+    } else {
+      carregar();
+    }
+  }
+</script>
+
+<style is:global>
+  .com { margin-top: 72px; padding-top: 40px; border-top: 1px solid var(--linha); }
+  .com-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 24px; }
+  .com-head h2 { margin: 0; font-size: 30px; font-weight: 600; letter-spacing: -0.02em; }
+  .com-total { font: 400 14px var(--mono); color: var(--azul); }
+  .com-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  .com-caixa { background: var(--bg-2); border: 1px solid var(--linha); border-radius: 16px; padding: 20px; }
+  .com-deslogado { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; }
+  .com-deslogado p { margin: 0; color: var(--dim); font-size: 16px; max-width: 46ch; }
+  .com-google { display: inline-flex; align-items: center; gap: 10px; padding: 10px 18px; border-radius: 999px; border: 1px solid var(--linha); background: var(--prata); color: var(--marinho); font: 600 15px var(--sans); cursor: pointer; transition: transform 0.15s, box-shadow 0.15s; }
+  .com-google:hover { transform: translateY(-1px); box-shadow: 0 8px 20px -10px rgba(116, 172, 216, 0.6); }
+  .com-google:focus-visible, .com-enviar:focus-visible, .com-link:focus-visible { outline: 2px solid var(--azul); outline-offset: 3px; }
+
+  .com-form { display: grid; gap: 12px; }
+  .com-eu { display: flex; align-items: center; gap: 10px; font-size: 15px; }
+  .com-eu-nome { font-weight: 600; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .com-resp { margin: 0; font-size: 14px; color: var(--dim); display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+  .com-resp strong { color: var(--azul); font-weight: 600; }
+  .com-form textarea { width: 100%; resize: vertical; min-height: 110px; padding: 14px 16px; border-radius: 12px; border: 1px solid var(--linha); background: var(--bg); color: var(--texto); font: 400 16px/1.6 var(--sans); }
+  .com-form textarea::placeholder { color: var(--dim); }
+  .com-form textarea:focus { outline: none; border-color: var(--azul); box-shadow: 0 0 0 3px rgba(116, 172, 216, 0.15); }
+  .com-rodape { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .com-contador { font: 400 12px var(--mono); color: var(--dim); font-variant-numeric: tabular-nums; }
+  .com-contador.perto { color: #f0b46a; }
+  .com-enviar { padding: 10px 22px; border-radius: 999px; border: 0; background: var(--azul); color: var(--bg); font: 600 15px var(--sans); cursor: pointer; transition: background 0.15s, opacity 0.15s; }
+  .com-enviar:hover:not(:disabled) { background: var(--prata); }
+  .com-enviar:disabled { opacity: 0.45; cursor: not-allowed; }
+  .com-erro { margin: 12px 0 0; padding: 10px 14px; border-radius: 10px; font-size: 14px; background: rgba(240, 110, 110, 0.1); border: 1px solid rgba(240, 110, 110, 0.35); color: #f2a7a7; }
+  .com-link { background: none; border: 0; padding: 0; font: 500 14px var(--sans); color: var(--dim); cursor: pointer; }
+  .com-link:hover { color: var(--azul); }
+  .com-link.perigo:hover { color: #f2a7a7; }
+
+  .com-lista, .com-respostas { list-style: none; padding: 0; margin: 0; }
+  .com-lista { margin-top: 32px; display: grid; gap: 4px; }
+  .com-item { display: grid; grid-template-columns: 40px 1fr; gap: 14px; padding: 20px 0; border-bottom: 1px solid var(--linha); }
+  .com-lista > .com-item:last-child { border-bottom: 0; }
+  .com-respostas { grid-column: 2; margin-top: 4px; padding-left: 18px; border-left: 2px solid var(--linha); }
+  .com-respostas .com-item { padding: 14px 0; border-bottom: 0; }
+  .com-avatar { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; display: inline-grid; place-items: center; background: var(--marinho); color: var(--prata); font: 600 16px var(--display); flex: none; }
+  .com-eu .com-avatar { width: 32px; height: 32px; font-size: 14px; }
+  .com-corpo { min-width: 0; }
+  .com-topo { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 10px; }
+  .com-nome { font-size: 16px; }
+  .com-selo { font: 400 11px var(--mono); color: var(--azul); border: 1px solid var(--linha); border-radius: 999px; padding: 1px 8px; }
+  .com-data { font: 400 12px var(--mono); color: var(--dim); }
+  .com-texto { margin: 6px 0 0; white-space: pre-wrap; overflow-wrap: anywhere; font-size: 16px; line-height: 1.65; }
+  .com-acoes-item { display: flex; gap: 18px; margin-top: 8px; }
+  .com-vazio { color: var(--dim); font-size: 15px; padding: 8px 0; }
+
+  @media (max-width: 560px) {
+    .com-caixa { padding: 16px; }
+    .com-deslogado { flex-direction: column; align-items: flex-start; }
+    .com-item { grid-template-columns: 32px 1fr; gap: 12px; }
+    .com-avatar { width: 32px; height: 32px; font-size: 14px; }
+    .com-respostas { padding-left: 12px; }
+  }
+</style>

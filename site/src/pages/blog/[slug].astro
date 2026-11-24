@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import { dataCurta } from '../../data/perfil';
 import { link, minutosLeitura } from '../../lib/link';
+import Comentarios from '../../components/Comentarios.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -13,9 +14,6 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 const aqui = Astro.url.pathname;
 const iso = post.data.date.toISOString().slice(0, 10);
-const [a, m, d] = iso.split('-');
-// Mesmo id de página que o Jekyll usava: mantém os comentários já feitos no Cusdis.
-const idAntigo = `/${a}/${m}/${d}/${post.id}.html`;
 ---
 <Base titulo={`${post.data.title} · Felipe Pazetto`} descricao={post.data.description}>
   <article class="in artigo">
@@ -31,17 +29,7 @@ const idAntigo = `/${a}/${m}/${d}/${post.id}.html`;
     </header>
     <div class="prosa"><Content /></div>
 
-    <section class="comentarios" aria-label="Comentários">
-      <h2>Comentários</h2>
-      <div id="cusdis_thread"
-        data-host="https://cusdis.com"
-        data-app-id="92812a6a-7337-49d0-9618-031aa2b044f8"
-        data-page-id={idAntigo}
-        data-page-url={new URL(`/blog/${post.id}`, Astro.site).href}
-        data-page-title={post.data.title}
-        data-theme="dark"></div>
-      <script is:inline async defer src="https://cusdis.com/js/cusdis.es.js"></script>
-    </section>
+    <Comentarios post={post.id} />
   </article>
 </Base>
 
@@ -71,6 +59,4 @@ const idAntigo = `/${a}/${m}/${d}/${post.id}.html`;
   .prosa table { border-collapse: collapse; display: block; overflow-x: auto; font-size: 15px; }
   .prosa th, .prosa td { border-bottom: 1px solid var(--linha); padding: 8px 12px; text-align: left; }
   .prosa hr { border: 0; border-top: 1px solid var(--linha); margin: 2.4em 0; }
-  .comentarios { margin-top: 72px; padding-top: 40px; border-top: 1px solid var(--linha); }
-  .comentarios h2 { margin: 0 0 20px; font-size: 26px; font-weight: 600; }
 </style>
